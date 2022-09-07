@@ -1,0 +1,32 @@
+Mes Methodes de resolution
+
+---->Methode exacte(Séparation et évaluation)
+
+        -L’évaluation
+            L’évaluation permet de réduire l’espace de recherche en éliminant
+            quelques sous ensembles qui ne contiennent pas la solution optimale. L’objectif est d’essayer d’évaluer l’intérêt de l’exploration d’un
+            sous-ensemble de l’arborescence. Le branch-and-bound utilise une
+            élimination de branches dans l’arborescence de recherche de la manière suivante : la recherche d’une solution de coût minimal, consiste
+            à mémoriser la solution de plus bas coût rencontré pendant l’exploration, et à comparer le coût de chaque noeud parcouru à celui de
+            la meilleure solution. Si le coût du noeud considéré est supérieur
+            au meilleur coût, on arrête l’exploration de la branche et toutes les
+            solutions de cette branche seront nécessairement de coût plus élevé
+            que la meilleure solution déjà trouvée.
+        - La séparation
+            La séparation consiste à diviser le problème en sous-problèmes.
+            Ainsi, en résolvant tous les sous-problèmes et en gardant la
+            meilleure solution trouvée, on est assuré d’avoir résolu le problème
+            initial. Cela revient à construire un arbre permettant d’énumérer
+            toutes les solutions. L’ensemble de neouds de l’arbre qu’il reste encore à parcourir comme étant susceptibles de contenir une solution optimale, c’est-à-dire encore à diviser, est appelé ensemble des
+            neouds actifs.
+        - La stratégie de parcours
+            La largeur d’abord : Cette stratégie favorise les sommets les plus
+            proches de la racine en faisant moins de séparations du problème initial. Elle est moins efficace que les deux autres stratégies présentées,
+            La profondeur d’abord : Cette stratégie avantage les sommets les
+            plus éloignés de la racine (de profondeur la plus élevée) en
+            appliquant plus de séparations au problème initial. Cette voie
+            mène rapidement à une solution optimale en économisant la
+            mémoire,
+            Le meilleur d’abord : Cette stratégie consiste à explorer des sous problèmes possédant la meilleure borne. Elle permet aussi
+            d’éviter l’exploration de tous les sous-problèmes qui possèdent
+            une mauvaise évaluation par rapport à la valeur optimale.
