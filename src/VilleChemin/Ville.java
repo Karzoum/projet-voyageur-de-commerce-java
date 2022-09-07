@@ -37,4 +37,10 @@ public class Ville {
     public void setNumVille(int numVille) {
         this.numVille = numVille;
     }
+
+    public double distanceEntreVille(Ville destination) {
+        int x = Math.abs(getX() - destination.getX());
+        int y = Math.abs(getY() - destination.getY());
+        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+    }
 }
