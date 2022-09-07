@@ -1,3 +1,4 @@
+package VilleChemin;
 public class Ville {
 
     private int x;
