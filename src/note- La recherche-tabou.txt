@@ -1,0 +1,18 @@
+
+--->La recherche Tabou
+
+1: Initialisation :
+
+s0 une solution initiale
+s ←− s0, 
+s∗ ←− s0, 
+c∗ ←− f(s0)
+T = ∅
+
+2: Générer un sous-ensemble de solution au voisinage de s
+
+s0 ∈ N(s) tel que ∀x ∈ N(s), f(x) ≥ f(s0) et s0 ∈/ T
+Si f(s0) < c∗ alors s∗ ←− s0 et c∗ ←− f(s0)
+Mise-à-jour de T
+
+3: Si la condition d’arrêt n’est pas satisfaite retour à l’étape 2
