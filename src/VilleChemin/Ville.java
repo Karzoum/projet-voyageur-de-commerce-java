@@ -1,4 +1,4 @@
-package VilleChemin;
+package villechemin;
 public class Ville {
 
     private int x;
@@ -42,5 +42,10 @@ public class Ville {
         int x = Math.abs(getX() - destination.getX());
         int y = Math.abs(getY() - destination.getY());
         return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+    }
+
+    @Override
+    public String toString() {
+        return "Ville [numVille=" + numVille + ", x=" + x + ", y=" + y + "]";
     }
 }

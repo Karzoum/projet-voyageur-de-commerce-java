@@ -3,7 +3,7 @@ package methode.recuitsimule;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import VilleChemin.Ville;
+import villechemin.*;
 
 public class AlgorithmeRecuitSimule {
     private ArrayList<Ville> Villes;
