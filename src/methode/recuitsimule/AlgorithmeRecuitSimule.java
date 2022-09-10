@@ -1,40 +1,44 @@
 package methode.recuitsimule;
 
-import java.util.ArrayList;
-import java.util.Vector;
+import java.util.Collections;
 
 import villechemin.*;
 
 public class AlgorithmeRecuitSimule {
-    private ArrayList<Ville> Villes;
 
-    /**
-     * @param villes
-     */
-    public AlgorithmeRecuitSimule(ArrayList<Ville> villes) {
-        Villes = villes;
-    }
+    private TourManager tourManager=new TourManager();
 
-    public void genererTrajetInitiak() {
-        
-    }
-
-    public Double getDistance() {
-        Double distance = 0;
-        for (int index = 0; index < travel.size(); index++) {
-            Ville starting = getCity(index);
-            Ville destination;
-            if (index + 1 < travel.size()) {
-                destination = getCity(index + 1);
-            } else {
-                destination = getCity(0);
-            }
-                distance += starting.distanceEntreVille(destination);
+    public static double probabiliteDacceptation(int energy, int newEnergy, Double temperature) {
+        if(newEnergy<energy){
+            return 1.0;
         }
-        return distance;
-    }
 
-    private Ville getCity(int index) {
-        return this.Villes.get(index);
+        Double temp = 10000.0;
+        Double tauxRef = 0.003;
+
+        Tour solutionCourante=new Tour();
+
+        solutionCourante.generateIndividual();
+
+        System.out.println(" Distance initiale de la solution"+ solutionCourante);
+        Tour meilleur = new Tour(solutionCourante.obtenirTour());
+
+        while( temp > 1){
+            Tour newSolution = new Tour(solutionCourante.obtenirTour());
+
+            int tourPos1 = (int) (newSolution.tourNombreDeVille() * Math.random());
+            int tourPos2 = (int) (newSolution.tourNombreDeVille() * Math.random());
+
+            Ville villeHasard1 = newSolution.obtenirUneVilleVisiter(tourPos1);
+            Ville villeHasard2 = newSolution.obtenirUneVilleVisiter(tourPos2);
+
+            newSolution.ajouterUneVillePosition(tourPos2, villeHasard1);
+            newSolution.ajouterUneVillePosition(tourPos1, villeHasard2);
+
+            if(solutionCourante.obtenirDistanceTour() < meilleur.obtenirDistanceTour()){
+                meilleur = new Tour(solutionCourante.obtenirTour());
+            }
+        }
+
     }
 }

@@ -53,7 +53,7 @@ public class Tour {
         return this.distance;
     }
 
-    private int tourNombreDeVille() {
+    public int tourNombreDeVille() {
         return this.tour.size();
     }
 
