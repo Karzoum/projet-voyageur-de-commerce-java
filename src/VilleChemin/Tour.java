@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class Tour {
     
-    private ArrayList<> tour= new ArrayList<Ville>();
+    private ArrayList<Ville> tour= new ArrayList<Ville>();
     private int distance=0;
     private Vector<Integer> randGenerate;
     private int numeroTour; 
@@ -25,11 +25,11 @@ public class Tour {
 
     }
 
-    public Tour(ArrayList tour){
-        this.tour = (ArrayList) tour.clone();
+    public Tour(ArrayList<Ville> enfant){
+        this.tour = (ArrayList<Ville>) enfant;
     }
     
-    public ArrayList obtenirTour(){
+    public ArrayList<Ville> obtenirTour(){
         return this.tour;
     }
     

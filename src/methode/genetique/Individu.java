@@ -15,7 +15,8 @@ public class Individu extends Tour implements Serializable{
         this.score = score;
     }
 
-    public Individu(ArrayList<Tour> enfant) {
+    
+    public Individu(ArrayList<Ville> enfant) {
         super(enfant);
     }
 

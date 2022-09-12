@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class TourManager {
     
-    private static ArrayList villesDeDestination=new ArrayList<Ville>();
+    private static ArrayList<Ville> villesDeDestination=new ArrayList<Ville>();
 
     /**
      * @param ville
