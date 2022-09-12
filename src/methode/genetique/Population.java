@@ -1,15 +1,36 @@
 package methode.genetique;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 
-import villechemin.*;
 
-public class Population {
+public class Population<Individu extends Generation> implements Serializable {
 
-    private ArrayList<Ville> Villes;
-    private ArrayList<Individu> individus;
+    private ArrayList<Individu> lesGenerations = new ArrayList<Individu>();
+    private NavigableMap<Integer, Integer> resencensement = new TreeMap<Integer, Integer>();
 
-    public Population(int nombreDIndividus,boolean initialiser) {
+    public void ajouterGeneration(Individu generation){
+        this.lesGenerations.add(generation);
+    }
+
+    public void recencer(Individu generation){
+        this.resencensement.put(generation.getNumeroGeneration(),generation.getSommeScore());
+    }
+
+    public boolean estPopulationDecroissante(){
+        int nbGenerationDecroissante = 0;
+        if(resencensement.size() > 10){
+            for(int i =0; i< 5; i++){
+                if(resencensement.descendingMap().get(1) <resencensement.descendingMap().get(i+1))
+                    nbGenerationDecroissante++;
+            }
+        }
+        return (nbGenerationDecroissante == 5);
+    }
+    /*
+     *  public Population(int nombreDIndividus,boolean initialiser) {
         this.individus = new ArrayList<Individu>();
         if(initialiser){
             for(int i=0 ; i < nombreDIndividus ; i++ ){
@@ -23,6 +44,7 @@ public class Population {
     public Individu getIndividu(int index) {
         return this.individus.get(index);
     }
+
     public Individu getFitest(){
         Individu plusApteIndividu = this.individus.get(0);
 
@@ -34,13 +56,11 @@ public class Population {
         return plusApteIndividu;
     }
 
-    private int obtenirTaillePopulation() {
-        return this.individus.size();
+     */
+   
+    public int nbGeneration() {
+        return this.lesGenerations.size();
     }
 
-
-    private void ajouterUnIndividu(int i, Individu newIndividu) {
-        this.individus.add(i, newIndividu);
-    }
     
 }

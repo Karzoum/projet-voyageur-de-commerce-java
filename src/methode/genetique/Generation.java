@@ -10,6 +10,12 @@ public class Generation {
     }
     private int numeroGeneration;
     
+    public int getNumeroGeneration() {
+        return numeroGeneration;
+    }
+    public void setNumeroGeneration(int numeroGeneration) {
+        this.numeroGeneration = numeroGeneration;
+    }
     public void ajouterUnIndividu(Individu newIndividu){
         this.lesIndividus.add(newIndividu);
     } 
@@ -67,5 +73,26 @@ public class Generation {
     }
 
     
+    public boolean contientSolution(){
+        for(Individu individu : lesIndividus){
+            if(individu.estSolution())
+                return true;
+        }
+        return false;
+    }
 
+    /*
+     * 
+     */
+
+     public Individu getMeilleurIndividu(){
+        Individu meilleurSolution = null;
+        for(Individu individu : lesIndividus){
+            if(meilleurSolution == null || individu.getScore() > meilleurSolution.getScore()){
+                meilleurSolution = individu;
+            }
+        }
+        return meilleurSolution;
+     }
 }
+

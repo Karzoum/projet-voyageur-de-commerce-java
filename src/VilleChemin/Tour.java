@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class Tour {
     
-    private ArrayList tour=new ArrayList<Ville>();
+    private ArrayList<> tour= new ArrayList<Ville>();
     private int distance=0;
     private Vector<Integer> randGenerate;
     private int numeroTour; 

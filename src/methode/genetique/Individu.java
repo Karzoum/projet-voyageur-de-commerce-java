@@ -15,7 +15,7 @@ public class Individu extends Tour implements Serializable{
         this.score = score;
     }
 
-    public Individu(ArrayList enfant) {
+    public Individu(ArrayList<Tour> enfant) {
         super(enfant);
     }
 
@@ -26,5 +26,10 @@ public class Individu extends Tour implements Serializable{
     public boolean estSelectionner() {
         return false;
     }
+
+    public boolean estSolution() {
+        return false;
+    }
+
     
 }
