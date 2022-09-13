@@ -16,15 +16,15 @@ public class AlgorithmeRecuitSimule {
         Double temp = 10000.0;
         Double tauxRef = 0.003;
  
-        Individu solutionCourante=new Individu();
+        Tour solutionCourante=new Tour();
 
         solutionCourante.generateIndividual();
 
         System.out.println(" Distance initiale de la solution"+ solutionCourante);
-        Individu meilleur = new Individu(solutionCourante.obtenirTour());
+        Tour meilleur = new Tour(solutionCourante.obtenirTour());
 
         while( temp > 1){
-            Individu newSolution = new Individu(solutionCourante.obtenirTour());
+            Tour newSolution = new Tour(solutionCourante.obtenirTour());
 
             int tourPos1 = (int) (newSolution.tourNombreDeVille() * Math.random());
             int tourPos2 = (int) (newSolution.tourNombreDeVille() * Math.random());
@@ -36,7 +36,7 @@ public class AlgorithmeRecuitSimule {
             newSolution.ajouterUneVillePosition(tourPos1, villeHasard2);
 
             if(solutionCourante.obtenirDistanceTour() < meilleur.obtenirDistanceTour()){
-                meilleur = new Individu(solutionCourante.obtenirTour());
+                meilleur = new Tour(solutionCourante.obtenirTour());
             }
         }
 

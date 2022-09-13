@@ -19,7 +19,7 @@ public class Tour {
     }
 
     public Tour() {
-        for (int i=0;i<TourManager.ObtenirNombreDeVille();i++){
+        for (int i=0; i < TourManager.ObtenirNombreDeVille(); i++){
             this.tour.add(null);
         }
 
