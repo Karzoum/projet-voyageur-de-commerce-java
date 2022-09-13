@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 public class TourManager {
     
-    private static ArrayList<Ville> villesDeDestination=new ArrayList<Ville>();
+    private ArrayList<Ville> villesDeDestination=new ArrayList<Ville>();
 
     /**
      * @param ville
      */
-    public static void ajouterVilleDeDestintion(Ville ville){
+    public void ajouterVilleDeDestintion(Ville ville){
         villesDeDestination.add(ville);
     }
 
@@ -18,14 +18,14 @@ public class TourManager {
      * @param index
      * @return
      */
-    public static Ville ObtenirUneVille(int index){
+    public Ville ObtenirUneVille(int index){
         return (Ville)villesDeDestination.get(index);
     }
 
     /**
      * @return
      */
-    public static int ObtenirNombreDeVille(){
+    public int ObtenirNombreDeVille(){
         return villesDeDestination.size();
     }
     
