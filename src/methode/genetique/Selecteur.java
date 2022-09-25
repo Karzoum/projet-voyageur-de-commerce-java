@@ -1,5 +1,5 @@
 package methode.genetique;
 
-public class AlgorithmeGenetique {
+public class Selecteur {
     
 }

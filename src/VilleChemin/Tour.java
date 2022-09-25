@@ -19,7 +19,7 @@ public class Tour {
     }
 
     public Tour() {
-        for (int i=0; i < TourManager.ObtenirNombreDeVille(); i++){
+        for (int i=0; i < this.tourNombreDeVille(); i++){
             this.tour.add(null);
         }
 
@@ -49,14 +49,18 @@ public class Tour {
         if(this.distance==0){
             int tourDistance=0;
             for(int indexVille=0;indexVille<tourNombreDeVille();indexVille++){
+
                 Ville villeCourante=obtenirUneVilleVisiter(indexVille);
                 Ville villeDeDestination;
+                
                 if(indexVille+1 < tourNombreDeVille()){
                     villeDeDestination=obtenirUneVilleVisiter(indexVille+1);
                 }
+
                 else{
                     villeDeDestination = obtenirUneVilleVisiter(0);
                 }
+
                 tourDistance+= villeCourante.distanceEntreVille(villeDeDestination);
             }
             

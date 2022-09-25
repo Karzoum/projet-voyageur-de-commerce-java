@@ -6,16 +6,16 @@ import java.util.NavigableMap;
 import java.util.TreeMap;
 
 
-public class Population<Individu extends Generation> implements Serializable {
+public class Population<Individus extends Generation> implements Serializable {
 
-    private ArrayList<Individu> lesGenerations = new ArrayList<Individu>();
+    private ArrayList<Individus> lesGenerations = new ArrayList<Individus>();
     private NavigableMap<Integer, Integer> resencensement = new TreeMap<Integer, Integer>();
 
-    public void ajouterGeneration(Individu generation){
+    public void ajouterGeneration(Individus generation){
         this.lesGenerations.add(generation);
     }
 
-    public void recencer(Individu generation){
+    public void recencer(Individus generation){
         this.resencensement.put(generation.getNumeroGeneration(),generation.getSommeScore());
     }
 
@@ -29,6 +29,7 @@ public class Population<Individu extends Generation> implements Serializable {
         }
         return (nbGenerationDecroissante == 5);
     }
+    
     /*
      *  public Population(int nombreDIndividus,boolean initialiser) {
         this.individus = new ArrayList<Individu>();
@@ -55,12 +56,10 @@ public class Population<Individu extends Generation> implements Serializable {
         }
         return plusApteIndividu;
     }
-
      */
-   
+
     public int nbGeneration() {
         return this.lesGenerations.size();
     }
-
     
 }

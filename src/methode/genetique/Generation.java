@@ -3,19 +3,26 @@ package methode.genetique;
 import java.util.ArrayList;
 
 public class Generation {
+
     private ArrayList<Individu> lesIndividus = new ArrayList<Individu>(); 
 
     public Generation(int numeroGeneration) {
         this.numeroGeneration = numeroGeneration;
+    }
+
+    public ArrayList<Individu> obtenirLesIndividu(){
+        return this.lesIndividus;
     }
     private int numeroGeneration;
     
     public int getNumeroGeneration() {
         return numeroGeneration;
     }
+
     public void setNumeroGeneration(int numeroGeneration) {
         this.numeroGeneration = numeroGeneration;
     }
+    
     public void ajouterUnIndividu(Individu newIndividu){
         this.lesIndividus.add(newIndividu);
     } 
@@ -64,11 +71,6 @@ public class Generation {
         }
         int nbIndividus = 0;
         int sommePonderee = 0 ;
-        /*
-         * 
-         * 
-         */
-        
         return (int) sommePonderee/ nbIndividus;
     }
 
