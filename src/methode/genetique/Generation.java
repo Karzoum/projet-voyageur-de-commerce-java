@@ -62,12 +62,12 @@ public class Generation {
         int scoreMax = 0;
         for(Individu individu : lesIndividus){
             if(individu.getScore() > scoreMax){
-                scoreMax = individu.getScore();
+                scoreMax = (int) individu.getScore();
             }
         }
         int[] repartitionScores = new int[scoreMax+1];
         for(Individu individu : lesIndividus){
-            repartitionScores[individu.getScore()]+=1;
+            repartitionScores[(int) individu.getScore()]+=1;
         }
         int nbIndividus = 0;
         int sommePonderee = 0 ;

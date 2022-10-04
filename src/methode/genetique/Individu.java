@@ -38,18 +38,18 @@ public class Individu implements Serializable{
         return numIndividu;
     }
 
-    private int score = 0;
+    private double scoreSelection = 0;
 
     public Individu(TourManager gene){
         this.genererIndividu(gene);
     }
 
-    public int getScore() {
-        return score;
+    public double getScore() {
+        return scoreSelection;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setScore(Double score) {
+        this.scoreSelection = score;
     }
 
     public boolean estSelectionner() {

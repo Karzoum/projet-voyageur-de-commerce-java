@@ -4,7 +4,9 @@ import villechemin.Ville;
 public class Evaluateur {
 
     public void evaluateur(Generation generation){
+
         double distanceLocal = 0.0;
+
         for(Individu individu :generation.obtenirLesIndividu() ){
 
             for(int index = 0; index < individu.getGenotype().size();index ++){
@@ -22,7 +24,10 @@ public class Evaluateur {
                 distanceLocal += villeCourante.distanceEntreVille(villeDestination);
             }
             individu.setValeur(distanceLocal);
+            double score = 1/distanceLocal;
+            individu.setScore(score);
         }
+
     }
 
 }
