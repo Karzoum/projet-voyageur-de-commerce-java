@@ -20,6 +20,7 @@ public class Individu implements Serializable{
     }
 
     private ArrayList<Ville> genotype;
+    
     public ArrayList<Ville> getGenotype() {
         return genotype;
     }
@@ -40,16 +41,12 @@ public class Individu implements Serializable{
 
     private double scoreSelection = 0;
 
-    public Individu(TourManager gene){
-        this.genererIndividu(gene);
-    }
-
     public double getScore() {
         return scoreSelection;
     }
 
     public void setScore(Double score) {
-        this.scoreSelection = score;
+        this.scoreSelection = (1/score);
     }
 
     public boolean estSelectionner() {
@@ -64,21 +61,10 @@ public class Individu implements Serializable{
         return this.distance;
     }
 
+    /**
+     * @param valeur
+     */
     public void setValeur(Double valeur){
         this.distance = valeur;
     }
-
-    public void genererIndividu(TourManager gene){
-        int randIndex;
-		for (int i = 0; i < gene.ObtenirNombreDeVille(); i++) {
-			do {
-				randIndex = (int) (Math.random()*gene.ObtenirNombreDeVille());
-			}
-			while (geneIndividu.contains(randIndex));
-			geneIndividu.addElement(randIndex);
-           this.genotype.add(gene.ObtenirUneVille(randIndex));
-
-		}
-    }
-    
 }

@@ -1,5 +1,17 @@
+import methode.genetique.Mediateur;
+import villechemin.TourManager;
+import villechemin.Ville;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        int nb = 500;
+        int iteration = 25;
+        TourManager newtour = new TourManager();
+        newtour.ajouterVilleDeDestintion(15);
+        for (int i =0 ; i< 15 ; i++){
+            System.out.println(newtour.ObtenirUneVille(i));
+        }
+        Mediateur m = new Mediateur();
+        m.genetique(nb, 25, 0.01, newtour);
     }
 }

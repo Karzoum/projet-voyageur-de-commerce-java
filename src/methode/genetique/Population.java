@@ -9,6 +9,7 @@ import java.util.TreeMap;
 public class Population<Individus extends Generation> implements Serializable {
 
     private ArrayList<Individus> lesGenerations = new ArrayList<Individus>();
+    
     private NavigableMap<Integer, Integer> resencensement = new TreeMap<Integer, Integer>();
 
     public void ajouterGeneration(Individus generation){
@@ -16,15 +17,15 @@ public class Population<Individus extends Generation> implements Serializable {
     }
 
     public void recencer(Individus generation){
-        this.resencensement.put(generation.getNumeroGeneration(),generation.getSommeScore());
+        this.resencensement.put( generation.getNumeroGeneration(), generation.getSommeScore() );
     }
 
     public boolean estPopulationDecroissante(){
         int nbGenerationDecroissante = 0;
         if(resencensement.size() > 10){
             for(int i =0; i< 5; i++){
-                if(resencensement.descendingMap().get(1) <resencensement.descendingMap().get(i+1))
-                    nbGenerationDecroissante++;
+                if(resencensement.descendingMap().get(1) < resencensement.descendingMap().get(i+1))
+                    nbGenerationDecroissante ++ ;
             }
         }
         return (nbGenerationDecroissante == 5);

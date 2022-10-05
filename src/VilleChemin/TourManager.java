@@ -10,8 +10,11 @@ public class TourManager {
     /**
      * @param ville
      */
-    public void ajouterVilleDeDestintion(Ville ville){
-        villesDeDestination.add(ville);
+    public void ajouterVilleDeDestintion(int nbVille){
+        for(int i = 1 ; i <= nbVille; i++){
+            Ville ville = new Ville(i);
+            villesDeDestination.add(ville);
+        }
     }
 
     /**

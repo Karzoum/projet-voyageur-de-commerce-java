@@ -52,7 +52,7 @@ public class RecuitSimule {
 
     }
 
-    public Tour recuitsimule(double T,double T_0,double lamda,int nombreIteration,TourManager tourManager){
+    /*public Tour recuitsimule(double T,double T_0,double lamda,int nombreIteration,TourManager tourManager){
         Tour trajetInitiale = new Tour();
         trajetInitiale.generateIndividual();
         
@@ -62,4 +62,5 @@ public class RecuitSimule {
             }
         }
     }
+    */
 }
