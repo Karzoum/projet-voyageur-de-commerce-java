@@ -70,7 +70,7 @@ public class Individu implements Serializable{
         this.distance = valeur;
     }
     public String toString() {
-        String tab = " | ";
+        String tab = this.numIndividu +"= | ";
         for(int i = 0; i< this.genotype.size(); i++){
             tab +=  this.geneIndividu.get(i)+" | ";
         }

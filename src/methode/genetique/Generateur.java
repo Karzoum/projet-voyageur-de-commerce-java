@@ -20,8 +20,9 @@ public class Generateur {
         this.generationInitiale = new Generation(0);
         Individu individu = new Individu();
 
-        for(int i =0; i < this.nombreDIndividus; i++){
+        for(int i = 1; i <= this.nombreDIndividus ; i++){
             //generationInitiale.ajouterUnIndividu(fabriqueIndividu.get());
+            individu.setNumIndividu(i);
             individu = genererIndividu(gene);
             generationInitiale.ajouterUnIndividu(individu);
         }
@@ -42,9 +43,8 @@ public class Generateur {
         int taille = gene.ObtenirNombreDeVille();
 
 		for (int i = 0 ; i < taille ; i++) {
-            newIndividu.setNumIndividu(i);
 			do {
-				randIndex = (int) (Math.random() * gene.ObtenirNombreDeVille());
+				randIndex = (int) (Math.random() * gene.ObtenirNombreDeVille()+1);
 			}
 			while (geneIndividu.contains(randIndex)); 
 

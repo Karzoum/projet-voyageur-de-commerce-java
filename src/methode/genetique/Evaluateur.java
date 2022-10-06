@@ -5,6 +5,7 @@ import java.util.Comparator;
 
 import villechemin.Ville;
 public class Evaluateur {
+
     private Ville destination = new Ville(-1);
     private Ville courante = new Ville(-1);
 
@@ -14,11 +15,17 @@ public class Evaluateur {
 
         for(Individu individu :generation.obtenirLesIndividu() ){
 
-            for(int index = 0; index < individu.getGenotype().size(); index ++){
+            int tailleGenotype = individu.getGenotype().size();
+
+            for(int index = 0; index < tailleGenotype; index ++){
 
                 this.courante = individu.getGenotype().get(index);
+                System.out.println(courante);
                 
-                if(index+1 < individu.getGenotype().size()){
+                /*
+                 * 
+                 * 
+                 * if(index +1 < tailleGenotype){
                     this.destination = individu.getGenotype().get(index+1);
                 }
 
@@ -27,13 +34,17 @@ public class Evaluateur {
                     this.destination = individu.getGenotype().get(0);
                 }
 
-                distanceLocal += this.courante.distanceEntreVille(destination);
+                System.out.println(destination);
+                 */
+                //distanceLocal += this.courante.distanceEntreVille(destination);
             }
+            System.out.println();
 
             individu.setValeur(distanceLocal);
             double score = 1/distanceLocal;
             individu.setScoreSelection(score);
         }
+
         ArrayList<Individu> lesIndividu = generation.obtenirLesIndividu();
         comparateur(lesIndividu);
 
