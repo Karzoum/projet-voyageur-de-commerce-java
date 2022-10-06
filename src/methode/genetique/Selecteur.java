@@ -13,20 +13,6 @@ public class Selecteur {
 
     public Selecteur(Generation generation) {
         this.generation = generation;
-        
-		for (Individu individu : this.generation.obtenirLesIndividu())
-		{
-			selectionArray[i] = (int) (Math.sqrt ((i + 1.0) / (allFits.size())) * (100));
-			//Plus de chances pour les premiers chemins
-			//System.out.println(selectionArray[i]);
-		}
-
-		rand = (int) (Math.random()*100);
-		
-		while (rand > selectionArray[a])	//Genere un nombre aléatoire pour la selection
-		{
-			a++;
-		}
 		//System.out.println(rand);
 
 

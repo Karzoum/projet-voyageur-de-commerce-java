@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Generation {
 
     private ArrayList<Individu> lesIndividus = new ArrayList<Individu>();
+    private int numeroGeneration;
 
     public Generation(int numeroGeneration) {
         this.numeroGeneration = numeroGeneration;
@@ -13,8 +14,6 @@ public class Generation {
     public ArrayList<Individu> obtenirLesIndividu() {
         return this.lesIndividus;
     }
-
-    private int numeroGeneration;
 
     public int getNumeroGeneration() {
         return numeroGeneration;

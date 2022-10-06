@@ -15,10 +15,12 @@ public class Population<Individus extends Generation> implements Serializable {
     public void ajouterGeneration(Individus generation){
         this.lesGenerations.add(generation);
     }
-
-    public void recencer(Individus generation){
-        this.resencensement.put( generation.getNumeroGeneration(), generation.getSommeScore() );
+    /*
+     * public void recencer(Individus generation){
+        this.resencensement.put( generation.getNumeroGeneration(), generation.getSommeScore());
     }
+     */
+    
 
     public boolean estPopulationDecroissante(){
         int nbGenerationDecroissante = 0;

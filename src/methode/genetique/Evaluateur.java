@@ -1,11 +1,12 @@
 package methode.genetique;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
 
 import villechemin.Ville;
 public class Evaluateur {
+    private Ville destination = new Ville(-1);
+    private Ville courante = new Ville(-1);
 
     public Evaluateur(Generation generation){
 
@@ -13,36 +14,41 @@ public class Evaluateur {
 
         for(Individu individu :generation.obtenirLesIndividu() ){
 
-            for(int index = 0; index < individu.getGenotype().size();index ++){
-                Ville villeCourante = individu.getGenotype().get(index);
-                Ville villeDestination ;
+            for(int index = 0; index < individu.getGenotype().size(); index ++){
+
+                this.courante = individu.getGenotype().get(index);
                 
                 if(index+1 < individu.getGenotype().size()){
-                    villeDestination = individu.getGenotype().get(index+1);
+                    this.destination = individu.getGenotype().get(index+1);
                 }
 
                 else{
-                    villeDestination = individu.getGenotype().get(0);
 
-                distanceLocal += villeCourante.distanceEntreVille(villeDestination);
+                    this.destination = individu.getGenotype().get(0);
+                }
+
+                distanceLocal += this.courante.distanceEntreVille(destination);
             }
+
             individu.setValeur(distanceLocal);
             double score = 1/distanceLocal;
             individu.setScoreSelection(score);
         }
+        ArrayList<Individu> lesIndividu = generation.obtenirLesIndividu();
+        comparateur(lesIndividu);
 
     }
 
     public void comparateur(ArrayList<Individu> lesIndividu){
-        Collection.sort(lesIndividu , new Comparator<Individu>(){
+        lesIndividu.sort(new Comparator<Individu>(){
 
             @Override
             public int compare(Individu o1, Individu o2) {
                 // TODO Auto-generated method stub
-                return 0;
+                return (int) (o2.getScoreSelection() - o1.getScoreSelection());
             }
 
-        }
+        });
     }
 
 }

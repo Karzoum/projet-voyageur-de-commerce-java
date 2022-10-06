@@ -1,4 +1,4 @@
-import methode.genetique.Mediateur;
+import methode.genetique.*;
 import villechemin.TourManager;
 //import villechemin.Ville;
 
@@ -7,12 +7,22 @@ public class App {
         int nb = 500;
         int iteration = 25;
         TourManager newtour = new TourManager();
-        newtour.ajouterVilleDeDestintion(15);
-        for (int i =0 ; i< 15 ; i++){
+         
+        newtour.ajouterVilleDeDestintion(10);
+
+        for (int i =1 ; i<= 10 ; i++){
             System.out.println(newtour.ObtenirUneVille(i));
         }
-        System.out.println("");
-        Mediateur m = new Mediateur();
-        m.genetique(nb, iteration, 0.01, newtour);
+        Generateur generer = new Generateur();
+
+        System.out.println(newtour.ObtenirNombreDeVille());
+
+        Generation generation = generer.getGeneration(15, newtour);
+        //Evaluateur evaluer = new Evaluateur(generation);
+
+        for(Individu individu : generation.obtenirLesIndividu()){
+            System.out.println(individu+"\n");
+        }
+
     }
 }

@@ -26,7 +26,7 @@ public class Individu implements Serializable{
 
     
     public ArrayList<Ville> getGenotype() {
-        return genotype;
+        return this.genotype;
     }
 
     public void setGenotype(ArrayList<Ville> genotype) {
@@ -71,9 +71,10 @@ public class Individu implements Serializable{
     }
     public String toString() {
         String tab = " | ";
-        for(int i = 0; i< this.geneIndividu.size(); i++){
+        for(int i = 0; i< this.genotype.size(); i++){
             tab +=  this.geneIndividu.get(i)+" | ";
         }
         return tab;
     }
+    
 }
