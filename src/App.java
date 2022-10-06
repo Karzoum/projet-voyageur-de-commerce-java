@@ -15,8 +15,6 @@ public class App {
         }
         Generateur generer = new Generateur();
 
-        System.out.println(newtour.ObtenirNombreDeVille());
-
         Generation generation = generer.getGeneration(15, newtour);
         //Evaluateur evaluer = new Evaluateur(generation);
 
