@@ -1,9 +1,13 @@
 package methode.genetique;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+
 import villechemin.Ville;
 public class Evaluateur {
 
-    public void evaluateur(Generation generation){
+    public Evaluateur(Generation generation){
 
         double distanceLocal = 0.0;
 
@@ -19,15 +23,26 @@ public class Evaluateur {
 
                 else{
                     villeDestination = individu.getGenotype().get(0);
-                }
 
                 distanceLocal += villeCourante.distanceEntreVille(villeDestination);
             }
             individu.setValeur(distanceLocal);
             double score = 1/distanceLocal;
-            individu.setScore(score);
+            individu.setScoreSelection(score);
         }
 
+    }
+
+    public void comparateur(ArrayList<Individu> lesIndividu){
+        Collection.sort(lesIndividu , new Comparator<Individu>(){
+
+            @Override
+            public int compare(Individu o1, Individu o2) {
+                // TODO Auto-generated method stub
+                return 0;
+            }
+
+        }
     }
 
 }

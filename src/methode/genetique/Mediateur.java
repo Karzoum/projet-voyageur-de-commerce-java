@@ -19,7 +19,7 @@ public class Mediateur {
 
             this.evaluateur.evaluateur(generation);
 
-            generation = this.selecteur.selectionner(generation);
+            generation = this.selecteur.selecteur(generation);
 
             generation = this.croissement.getGeneration(generation);
 

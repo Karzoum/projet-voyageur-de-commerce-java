@@ -27,7 +27,7 @@ public class EntreCroiseur {
             @Override
             public int compare(Individu o1, Individu o2) {
                 // TODO Auto-generated method stub
-                return (int) (o2.getScore() - o1.getScore());
+                return (int) (o2.getScoreSelection() - o1.getScoreSelection());
             }
 
         });

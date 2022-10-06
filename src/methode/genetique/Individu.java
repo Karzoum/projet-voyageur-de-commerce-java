@@ -8,7 +8,7 @@ import villechemin.*;
 
 public class Individu implements Serializable{
 
-    private Double valeur = 0.0;
+    private Double distance = 0.0;
     private Vector<Integer> geneIndividu;
     private ArrayList<Ville> genotype;
     private int numIndividu;
@@ -47,7 +47,7 @@ public class Individu implements Serializable{
     }
 
     public void setScoreSelection(Double score) {
-        this.scoreSelection = (1/(score+1));
+        this.scoreSelection = (1/score);
     }
 
     public boolean estSelectionner() {
@@ -55,15 +55,19 @@ public class Individu implements Serializable{
         return this.estSelectionner;
     }
 
+    public boolean estSolution() {
+        return false;
+    }  
+    
     public double getValeur(){
-        return this.valeur;
+        return this.distance;
     }
 
     /**
      * @param valeur
      */
     public void setValeur(Double valeur){
-        this.valeur = valeur;
+        this.distance = valeur;
     }
     public String toString() {
         String tab = " | ";

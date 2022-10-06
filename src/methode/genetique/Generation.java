@@ -52,30 +52,6 @@ public class Generation {
         }
     }
 
-    public int getSommeScore() {
-        int somme = 0;
-        for (Individu individu : lesIndividus) {
-            somme += individu.getScore();
-        }
-        return somme;
-    }
-
-    public int getScoreDeSelection() {
-        int scoreMax = 0;
-        for (Individu individu : lesIndividus) {
-            if (individu.getScore() > scoreMax) {
-                scoreMax = (int) individu.getScore();
-            }
-        }
-        int[] repartitionScores = new int[scoreMax + 1];
-        for (Individu individu : lesIndividus) {
-            repartitionScores[(int) individu.getScore()] += 1;
-        }
-        int nbIndividus = 0;
-        int sommePonderee = 0;
-        return (int) sommePonderee / nbIndividus;
-    }
-
     public boolean contientSolution() {
         for (Individu individu : lesIndividus) {
             if (individu.estSolution())
@@ -85,7 +61,30 @@ public class Generation {
     }
 
     /*
-     * 
+     * public int getSommeScore() {
+        int somme = 0;
+        for (Individu individu : lesIndividus) {
+            somme += individu.getScoreSelection();
+        }
+        return somme;
+    }
+
+    public int getScoreDeSelection() {
+        int scoreMax = 0;
+        for (Individu individu : lesIndividus) {
+            if (individu.getScoreSelection() > scoreMax) {
+                scoreMax = (int) individu.getScoreSelection();
+            }
+        }
+        int[] repartitionScores = new int[scoreMax + 1];
+        for (Individu individu : lesIndividus) {
+            repartitionScores[(int) individu.getScoreSelection()] += 1;
+        }
+        int nbIndividus = 0;
+        int sommePonderee = 0;
+        return (int) sommePonderee / nbIndividus;
+    }
+
      */
 
     public Individu getMeilleurIndividu() {
@@ -93,7 +92,7 @@ public class Generation {
         Individu meilleurSolution = null;
 
         for (Individu individu : lesIndividus) {
-            if (meilleurSolution == null || individu.getScore() > meilleurSolution.getScore()) {
+            if (meilleurSolution == null || individu.getScoreSelection() > meilleurSolution.getScoreSelection()) {
                 meilleurSolution = individu;
             }
         }
