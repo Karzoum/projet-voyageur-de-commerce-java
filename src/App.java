@@ -1,6 +1,6 @@
 import methode.genetique.Mediateur;
 import villechemin.TourManager;
-import villechemin.Ville;
+//import villechemin.Ville;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -11,7 +11,8 @@ public class App {
         for (int i =0 ; i< 15 ; i++){
             System.out.println(newtour.ObtenirUneVille(i));
         }
+        System.out.println("");
         Mediateur m = new Mediateur();
-        m.genetique(nb, 25, 0.01, newtour);
+        m.genetique(nb, iteration, 0.01, newtour);
     }
 }

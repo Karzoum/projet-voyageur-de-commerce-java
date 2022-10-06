@@ -24,10 +24,16 @@ public class Generateur {
     public Individu genererIndividu(TourManager gene){
 
         Individu newIndividu = new Individu();
+
         int randIndex;
-        Vector<Integer> geneIndividu = newIndividu.getGeneIndividu();
-        ArrayList<Ville> genotype = newIndividu.getGenotype();
+
+        Vector<Integer> geneIndividu = new Vector<Integer>();
+        ArrayList<Ville> genotype = new ArrayList<Ville>();
+        for(int j = 0; j< gene.ObtenirNombreDeVille(); j++){
+            newIndividu.setNumIndividu(j);
+
 		for (int i = 0; i < gene.ObtenirNombreDeVille(); i++) {
+            
 			do {
 				randIndex = (int) (Math.random()*gene.ObtenirNombreDeVille());
 			}
@@ -35,6 +41,10 @@ public class Generateur {
 			geneIndividu.addElement(randIndex);
             genotype.add(gene.ObtenirUneVille(randIndex));
 		}
+        newIndividu.setGeneIndividu(geneIndividu);
+        newIndividu.setGenotype(genotype);
+    }
+
         return newIndividu;
     }
 }

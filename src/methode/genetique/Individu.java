@@ -8,8 +8,13 @@ import villechemin.*;
 
 public class Individu implements Serializable{
 
-    private Double distance = 0.0;
+    private Double valeur = 0.0;
     private Vector<Integer> geneIndividu;
+    private ArrayList<Ville> genotype;
+    private int numIndividu;
+    private double scoreSelection = 0;
+    private boolean estSelectionner;
+
 
     public Vector<Integer> getGeneIndividu() {
         return geneIndividu;
@@ -19,7 +24,6 @@ public class Individu implements Serializable{
         this.geneIndividu = geneIndividu;
     }
 
-    private ArrayList<Ville> genotype;
     
     public ArrayList<Ville> getGenotype() {
         return genotype;
@@ -29,42 +33,43 @@ public class Individu implements Serializable{
         this.genotype = genotype;
     }
 
-    private static int numIndividu;
 
-    public static void setNumIndividu(int numIndividu) {
-        Individu.numIndividu = numIndividu;
+    public void setNumIndividu(int numIndividu) {
+        this.numIndividu = numIndividu;
     }
 
-    public static int getNumindividu() {
+    public  int getNumindividu() {
         return numIndividu;
     }
 
-    private double scoreSelection = 0;
-
-    public double getScore() {
+    public double getScoreSelection() {
         return scoreSelection;
     }
 
-    public void setScore(Double score) {
-        this.scoreSelection = (1/score);
+    public void setScoreSelection(Double score) {
+        this.scoreSelection = (1/(score+1));
     }
 
     public boolean estSelectionner() {
-        return false;
+        this.estSelectionner = true;
+        return this.estSelectionner;
     }
 
-    public boolean estSolution() {
-        return false;
-    }  
-    
     public double getValeur(){
-        return this.distance;
+        return this.valeur;
     }
 
     /**
      * @param valeur
      */
     public void setValeur(Double valeur){
-        this.distance = valeur;
+        this.valeur = valeur;
+    }
+    public String toString() {
+        String tab = " | ";
+        for(int i = 0; i< this.geneIndividu.size(); i++){
+            tab +=  this.geneIndividu.get(i)+" | ";
+        }
+        return tab;
     }
 }

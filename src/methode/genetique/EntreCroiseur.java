@@ -8,7 +8,16 @@ import java.util.function.BiFunction;
 import villechemin.Ville;
 
 public class EntreCroiseur {
+    private Individu enfant;
+    private Individu papa;
+    private Individu maman;
+    public void Recombinaison(Generation lesParents){
+
+
+    }
     private BiFunction<Individu , Individu, ArrayList<Individu>> fabriqueDescendants;
+
+    
     
     public Generation getGeneration(Generation generationParent){
 
@@ -24,7 +33,7 @@ public class EntreCroiseur {
         });
 
         int index = 0;
-        while(NouvelleGeneration.nombreDIndividusGeneration() < 50 && index < generationParent.nombreDIndividusGeneration() -1){
+        while(NouvelleGeneration.nombreDIndividusGeneration() < generationParent.nombreDIndividusGeneration() && index < generationParent.nombreDIndividusGeneration() -1){
             
             crossOver(generationParent.obtenirLesIndividu().get(index), generationParent.obtenirLesIndividu().get(index + 1));
             NouvelleGeneration.ajouterGroupeIndividu(fabriqueDescendants.apply(generationParent.obtenirLesIndividu().get(index), generationParent.obtenirLesIndividu().get(index +1)));
