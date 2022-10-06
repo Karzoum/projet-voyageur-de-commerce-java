@@ -11,16 +11,21 @@ public class Generateur {
 
     private Generation generationInitiale;
     private Individu newIndividu;
+    private int nombreDIndividus;
 // Algorithme glouton a faire ici mais d'abort essayé avec un aléaatoire
    // private Supplier<Individu> fabriqueIndividu;
 
     public Generation getGeneration(int nbIndividu, TourManager gene){
-
+        this.nombreDIndividus = nbIndividu;
         this.generationInitiale = new Generation(0);
-        for(int i =0; i < nbIndividu; i++){
+        Individu individu = new Individu();
+
+        for(int i =0; i < this.nombreDIndividus; i++){
             //generationInitiale.ajouterUnIndividu(fabriqueIndividu.get());
-            generationInitiale.ajouterUnIndividu(genererIndividu(gene));
+            individu = genererIndividu(gene);
+            generationInitiale.ajouterUnIndividu(individu);
         }
+
         return generationInitiale;
     }
     
@@ -34,14 +39,14 @@ public class Generateur {
         ArrayList<Ville> genotype = new ArrayList<Ville>();
 
         System.out.println(gene.ObtenirNombreDeVille());
+        int taille = gene.ObtenirNombreDeVille();
 
-		for (int i = 0 ; i < gene.ObtenirNombreDeVille(); i++) {
-            i += 1;
+		for (int i = 0 ; i < taille ; i++) {
             newIndividu.setNumIndividu(i);
 			do {
 				randIndex = (int) (Math.random() * gene.ObtenirNombreDeVille());
 			}
-			while (geneIndividu.contains(randIndex) && randIndex == 0); 
+			while (geneIndividu.contains(randIndex)); 
 
 			geneIndividu.addElement(randIndex);
 
