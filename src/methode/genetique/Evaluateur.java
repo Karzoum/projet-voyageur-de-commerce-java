@@ -8,6 +8,7 @@ public class Evaluateur {
 
     private Ville destination = new Ville(-1);
     private Ville courante = new Ville(-1);
+    private ArrayList<Double> lesScors = new ArrayList<Double>();
 
     public Evaluateur(Generation generation){
 
@@ -35,8 +36,10 @@ public class Evaluateur {
             individu.setValeur(distanceLocal);
             double score = 1/distanceLocal;
             individu.setScoreSelection(score);
+            this.lesScors.add(score);
         }
-
+        
+        generation.setScors(lesScors);
         ArrayList<Individu> lesIndividu = generation.obtenirLesIndividu();
         comparateur(lesIndividu);
 

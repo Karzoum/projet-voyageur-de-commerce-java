@@ -47,7 +47,7 @@ public class Individu implements Serializable{
     }
 
     public void setScoreSelection(Double score) {
-        this.scoreSelection = (1/score);
+        this.scoreSelection = score;
     }
 
     public boolean estSelectionner() {

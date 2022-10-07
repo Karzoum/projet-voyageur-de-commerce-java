@@ -31,15 +31,15 @@ public class Selecteur {
             this.lesScoreDeSelections.set(i, lesScoreDeSelections.get(i)+lesScoreDeSelections.get(i-1));
         }
 
-        int n = (int) (Math.random() * lesScoreDeSelections.get(l));
+        int n = (int) (Math.random() * lesScoreDeSelections.get(l-1));
         
         for(int i = 1; i < l; i++ ){
             if( this.lesScoreDeSelections.get(i-1) < n && n <= this.lesScoreDeSelections.get(i) ){
                 indexdeSelection = i ;
             }
         }
-
-        individuSelectionner = lesIndividu.get(indexdeSelection);
+       
+        individuSelectionner = lesIndividu.get(indexdeSelection+1);
 
         return individuSelectionner;
     }

@@ -11,7 +11,7 @@ public class App {
         newtour.ajouterVilleDeDestintion(5);
         Generateur generer = new Generateur();
 
-        Generation generation = generer.getGeneration(5, newtour);
+        Generation generation = generer.getGeneration(15, newtour);
 
         for(Individu individu : generation.obtenirLesIndividu()){
             System.out.println(individu+"\n");
@@ -20,13 +20,14 @@ public class App {
         Evaluateur evaluer = new Evaluateur(generation);
 
         for(Individu individu : generation.obtenirLesIndividu()){
-            System.out.println(individu+"\n");
+            System.out.println(individu.getValeur()+"\n");
         }
-
-        new Selecteur(generation);
         
-        for(Individu individu : generation.obtenirLesIndividu()){
-            System.out.println(individu+"\n");
+        Selecteur select = new Selecteur();
+        for(int i =0;i<5;i++){
+        Individu  I1 = select.Selection(generation);
+
+        System.out.println(I1);
         }
 
     }

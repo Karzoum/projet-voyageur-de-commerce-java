@@ -19,9 +19,9 @@ public class Mediateur {
 
             this.evaluateur = new Evaluateur(generation);
 
-            this.selecteur = new Selecteur(generation);
+            //this.selecteur = new Selecteur(generation);
 
-            generation = this.croissement.getGeneration(generation);
+            //generation = this.croissement.getGeneration(generation);
 
             this.population.ajouterGeneration(generation);
         }
