@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Generation {
 
     private ArrayList<Individu> lesIndividus = new ArrayList<Individu>();
+    private ArrayList<Double> Scors = new ArrayList<Double>();
+
     private int numeroGeneration;
 
     public Generation(int numeroGeneration) {
@@ -50,7 +52,7 @@ public class Generation {
             }
         }
     }
-
+/* 
     public boolean contientSolution() {
         for (Individu individu : lesIndividus) {
             if (individu.estSolution())
@@ -59,15 +61,15 @@ public class Generation {
         return false;
     }
 
-    /*
-     * public int getSommeScore() {
+    
+      public int getSommeScore() {
         int somme = 0;
         for (Individu individu : lesIndividus) {
             somme += individu.getScoreSelection();
         }
         return somme;
     }
-
+/* 
     public int getScoreDeSelection() {
         int scoreMax = 0;
         for (Individu individu : lesIndividus) {
@@ -96,5 +98,13 @@ public class Generation {
             }
         }
         return meilleurSolution;
+    }
+
+    public ArrayList<Double> getScors() {
+        return this.Scors;
+    }
+
+    public void setScors(ArrayList<Double> scors) {
+        Scors = scors;
     }
 }

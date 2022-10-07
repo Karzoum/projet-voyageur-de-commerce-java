@@ -39,7 +39,6 @@ public class Generateur {
         Vector<Integer> geneIndividu = new Vector<Integer>();
         ArrayList<Ville> genotype = new ArrayList<Ville>();
 
-        System.out.println(gene.ObtenirNombreDeVille());
         int taille = gene.ObtenirNombreDeVille();
 
 		for (int i = 0 ; i < taille ; i++) {

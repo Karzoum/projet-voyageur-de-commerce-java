@@ -1,37 +1,47 @@
 package methode.genetique;
 
-import java.util.Comparator;
-//import java.util.function.BiConsumer;
-
+import java.util.ArrayList;
 public class Selecteur {
 
-    private Generation generation;
+    private ArrayList<Double> lesScoreDeSelections;
+    private ArrayList<Individu> lesIndividu;
+    int indexdeSelection = -1;
+    Individu individuSelectionner = new Individu();
 
-    // private BiConsumer<Individu , Integer> selecteurIndividu;
+    public Individu Selection(Generation generation) {
 
-    // private int seuil;
-
-    public Selecteur(Generation generation) {
-        this.generation = generation;
-		//System.out.println(rand);
-
-
-/*
-        generation.obtenirLesIndividu().sort(new Comparator<Individu>() {
-
-            @Override
-            public int compare(Individu o1, Individu o2) {
-                // TODO Auto-generated method stub
-                return (int) (o2.getScoreSelection() - o1.getScoreSelection());
-            }
-
-        });
-        for (int i = generation.nombreDIndividusGeneration() / 2; i < generation.nombreDIndividusGeneration(); i++) {
-            Individu individuLocal = generation.obtenirLesIndividu().get(1);
-            generation.en
-             leverIndividu(individuLocal);
-        }
- */      
+        this.lesIndividu = generation.obtenirLesIndividu();
+        this.lesScoreDeSelections = generation.getScors();
         
+        int index = 1;
+        int l = this.lesScoreDeSelections.size();
+
+        for (int i = 0; i < l; i++) {
+            if (this.lesScoreDeSelections.get(i) == 0.0)
+                index++;
+        }
+        if (index == l) {
+
+            for (int i = 0; i < l; i++) {
+                this.lesScoreDeSelections.set(i, 1.0);
+            }
+        }
+
+        for(int i = 1; i < l;i++){
+            this.lesScoreDeSelections.set(i, lesScoreDeSelections.get(i)+lesScoreDeSelections.get(i-1));
+        }
+
+        int n = (int) (Math.random() * lesScoreDeSelections.get(l));
+        
+        for(int i = 1; i < l; i++ ){
+            if( this.lesScoreDeSelections.get(i-1) < n && n <= this.lesScoreDeSelections.get(i) ){
+                indexdeSelection = i ;
+            }
+        }
+
+        individuSelectionner = lesIndividu.get(indexdeSelection);
+
+        return individuSelectionner;
     }
+
 }

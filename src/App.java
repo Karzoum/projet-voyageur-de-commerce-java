@@ -2,7 +2,7 @@ import methode.genetique.*;
 import villechemin.TourManager;
 //import villechemin.Ville;
 
-public class App {
+public class App { 
     public static void main(String[] args) throws Exception {
         int nb = 500;
         int iteration = 25;
@@ -19,6 +19,12 @@ public class App {
 
         Evaluateur evaluer = new Evaluateur(generation);
 
+        for(Individu individu : generation.obtenirLesIndividu()){
+            System.out.println(individu+"\n");
+        }
+
+        new Selecteur(generation);
+        
         for(Individu individu : generation.obtenirLesIndividu()){
             System.out.println(individu+"\n");
         }

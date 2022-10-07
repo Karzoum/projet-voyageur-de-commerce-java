@@ -20,12 +20,7 @@ public class Evaluateur {
             for(int index = 0; index < tailleGenotype; index ++){
 
                 this.courante = individu.getGenotype().get(index);
-                System.out.println(courante);
-                
-                /*
-                 * 
-                 * 
-                 * if(index +1 < tailleGenotype){
+                  if(index +1 < tailleGenotype){
                     this.destination = individu.getGenotype().get(index+1);
                 }
 
@@ -33,12 +28,9 @@ public class Evaluateur {
 
                     this.destination = individu.getGenotype().get(0);
                 }
-
-                System.out.println(destination);
-                 */
-                //distanceLocal += this.courante.distanceEntreVille(destination);
+                distanceLocal += this.courante.distanceEntreVille(destination);
             }
-            System.out.println();
+
 
             individu.setValeur(distanceLocal);
             double score = 1/distanceLocal;
@@ -49,7 +41,7 @@ public class Evaluateur {
         comparateur(lesIndividu);
 
     }
-
+  
     public void comparateur(ArrayList<Individu> lesIndividu){
         lesIndividu.sort(new Comparator<Individu>(){
 
