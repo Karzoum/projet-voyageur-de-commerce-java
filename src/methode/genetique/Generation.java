@@ -92,8 +92,8 @@ public class Generation {
         
         Individu meilleurSolution = null;
 
-        for (Individu individu : lesIndividus) {
-            if (meilleurSolution == null || individu.getScoreSelection() > meilleurSolution.getScoreSelection()) {
+        for (Individu individu : this.lesIndividus) {
+            if (meilleurSolution == null || individu.getValeur() < meilleurSolution.getValeur()) {
                 meilleurSolution = individu;
             }
         }

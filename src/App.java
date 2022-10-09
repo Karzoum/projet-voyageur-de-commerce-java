@@ -17,18 +17,23 @@ public class App {
             System.out.println(individu+"\n");
         }
 
-        Evaluateur evaluer = new Evaluateur(generation);
+        Evaluateur evaluer = new Evaluateur();
+        evaluer.evaluer(generation);
 
         for(Individu individu : generation.obtenirLesIndividu()){
             System.out.println(individu.getValeur()+"\n");
         }
         
         Selecteur select = new Selecteur();
-        for(int i =0;i<5;i++){
+        for(int i =0;i<10;i++){
         Individu  I1 = select.Selection(generation);
 
-        System.out.println(I1);
+        System.out.println(I1+"\n \n");
         }
+
+        Mediateur media = new Mediateur();
+        
+        media.genetique(30, 15, 0.01, newtour);
 
     }
 }

@@ -11,7 +11,7 @@ public class Individu implements Serializable{
     private Double distance = 0.0;
     private Vector<Integer> geneIndividu;
     private ArrayList<Ville> genotype;
-    private int numIndividu;
+    private int numIndividu = - 1;
     private double scoreSelection = 0;
     private boolean estSelectionner;
 
@@ -32,7 +32,6 @@ public class Individu implements Serializable{
     public void setGenotype(ArrayList<Ville> genotype) {
         this.genotype = genotype;
     }
-
 
     public void setNumIndividu(int numIndividu) {
         this.numIndividu = numIndividu;

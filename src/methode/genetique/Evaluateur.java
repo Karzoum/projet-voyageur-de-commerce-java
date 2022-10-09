@@ -10,7 +10,7 @@ public class Evaluateur {
     private Ville courante = new Ville(-1);
     private ArrayList<Double> lesScors = new ArrayList<Double>();
 
-    public Evaluateur(Generation generation){
+    public void evaluer(Generation generation){
 
         double distanceLocal = 0.0;
 
