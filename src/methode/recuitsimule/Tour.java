@@ -1,13 +1,16 @@
-package villechemin;
+package methode.recuitsimule;
 
 import java.util.ArrayList;
 import java.util.Vector;
 
+import villechemin.TourManager;
+import villechemin.Ville;
+
 public class Tour {
     
     private ArrayList<Ville> tour= new ArrayList<Ville>();
-    private int distance=0;
-    private Vector<Integer> randGenerate;
+    private double distance=0;
+    private Vector<Integer> randGenerate = new Vector<Integer>();
     private int numeroTour; 
     
     public int getNumeroTour() {
@@ -38,23 +41,23 @@ public class Tour {
      * @return
      */
     public Ville obtenirUneVilleVisiter(int tourPosition){
-        return (Ville) this.tour.get(tourPosition);
+        return this.tour.get(tourPosition);
     }
 
     public void ajouterUneVillePosition(int tourPosition,Ville ville){
         this.tour.set(tourPosition, ville);
     }
 
-    public int obtenirDistanceTour(){
+    public double EnergyTour(){
         if(this.distance==0){
-            int tourDistance=0;
+            Double tourDistance=0.0;
             for(int indexVille=0;indexVille<tourNombreDeVille();indexVille++){
 
                 Ville villeCourante=obtenirUneVilleVisiter(indexVille);
                 Ville villeDeDestination;
                 
                 if(indexVille+1 < tourNombreDeVille()){
-                    villeDeDestination=obtenirUneVilleVisiter(indexVille+1);
+                    villeDeDestination=obtenirUneVilleVisiter(indexVille);
                 }
 
                 else{
@@ -64,14 +67,14 @@ public class Tour {
                 tourDistance+= villeCourante.distanceEntreVille(villeDeDestination);
             }
             
-            this.distance=tourDistance;
+            this.distance = tourDistance;
         }
         return this.distance;
     }
 
     public boolean plusCourtTour(Tour tour){
         boolean etat=false;
-        if(tour.obtenirDistanceTour() > this.obtenirDistanceTour()){
+        if(tour.EnergyTour() > this.EnergyTour()){
             etat = true;
         }
         return etat;
@@ -89,16 +92,17 @@ public class Tour {
 
         return geneString;
     }
-
-    public void generateIndividual() {
+      public void generateIndividual(TourManager lesVilles) {
         int randIndex;
-		for (int i = 0; i < this.tourNombreDeVille(); i++) {
+		for (int i = 0; i < lesVilles.ObtenirNombreDeVille(); i++) {
 			do {
-				randIndex = (int) (Math.random()*this.tourNombreDeVille());
+				randIndex = (int) (Math.random()*lesVilles.ObtenirNombreDeVille());
 			}
 			while (randGenerate.contains(randIndex));
 			randGenerate.addElement(randIndex);
+            this.tour.add(lesVilles.ObtenirUneVille(randIndex));
+
 		}
-    }
+        }
 
 }

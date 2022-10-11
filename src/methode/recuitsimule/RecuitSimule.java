@@ -1,12 +1,12 @@
 package methode.recuitsimule;
 
-import java.util.Collections;
+import java.util.ArrayList;
 
 import villechemin.*;
 
 public class RecuitSimule {
 
-    private TourManager tour=new TourManager();
+    private TourManager lesVilles=new TourManager();
     private double temp;
     private double lamda;
 
@@ -19,48 +19,50 @@ public class RecuitSimule {
         }
     }
 
-    public Tour transformation(Tour solutionCourante){
-        Tour newSolution = new Tour(solutionCourante.obtenirTour());
+    public ArrayList<Ville> transformation(Tour solutionCourante){
+        ArrayList<Ville> newSolution = solutionCourante.obtenirTour();
 
-            int tourPos1 = (int) (newSolution.tourNombreDeVille() * Math.random());
-            int tourPos2 = (int) (newSolution.tourNombreDeVille() * Math.random());
+            int tourPos1 = (int) (newSolution.size() * Math.random());
+            int tourPos2 = (int) (newSolution.size() * Math.random());
 
-            Ville villeHasard1 = newSolution.obtenirUneVilleVisiter(tourPos1);
-            Ville villeHasard2 = newSolution.obtenirUneVilleVisiter(tourPos2);
+            Ville villeHasard1 = newSolution.get(tourPos1);
+            Ville villeHasard2 = newSolution.get(tourPos2);
 
-            newSolution.ajouterUneVillePosition(tourPos2, villeHasard1);
-            newSolution.ajouterUneVillePosition(tourPos1, villeHasard2);
-        /*
-         *     if(solutionCourante.obtenirDistanceTour() < newSolution.obtenirDistanceTour()){
-         *  newSolution = new Tour(solutionCourante.obtenirTour())
-         *  }
-         * 
-         */
+            newSolution.add(tourPos2, villeHasard1);
+            newSolution.add(tourPos1, villeHasard2);
+        
         return newSolution;
     }
-    public void recuitsimulee(){
+
+    public void recuitsimulee(double tauxRefroidissement,TourManager tourManager,Double temp){
+        this.lesVilles=tourManager;
+        this.temp = temp;
         Tour solutionCourante=new Tour();
 
-        solutionCourante.generateIndividual();
+        solutionCourante.generateIndividual(lesVilles);
 
         System.out.println(" Distance initiale de la solution"+ solutionCourante);
         Tour meilleur = new Tour(solutionCourante.obtenirTour());
 
         while( temp > 1){
-            
-        }
-
-    }
-
-    /*public Tour recuitsimule(double T,double T_0,double lamda,int nombreIteration,TourManager tourManager){
-        Tour trajetInitiale = new Tour();
-        trajetInitiale.generateIndividual();
-        
-        for(int i = 0; i < nombreIteration; i++){
-            while(T > T_0){
-                
+            // R <- Tweak(Copy(S))
+            Tour newSolution = new Tour(transformation(solutionCourante));
+            if(solutionCourante.EnergyTour() < newSolution.EnergyTour()){
+                solutionCourante = newSolution;
             }
+            else{
+                double p = (Math.random() * 1);
+                if(p < Math.exp(- (newSolution.EnergyTour()-solutionCourante.EnergyTour())/temp)){
+                    solutionCourante = newSolution;
+                }
+            }
+            if(solutionCourante.EnergyTour() < meilleur.EnergyTour()){
+                meilleur = solutionCourante;
+            }
+            temp += (1-lamda) * tauxRefroidissement;
         }
+        System.out.println(" Distance initiale de la solution"+ meilleur);
+
     }
-    */
+
 }
