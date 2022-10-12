@@ -6,7 +6,7 @@ import villechemin.*;
 
 public class RecuitSimule {
 
-    private TourManager lesVilles=new TourManager();
+    private TourManager lesVilles = new TourManager();
     private double temp;
     private double lamda;
 
