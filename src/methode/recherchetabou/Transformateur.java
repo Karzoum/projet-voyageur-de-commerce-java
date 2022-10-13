@@ -6,10 +6,9 @@ import villechemin.Ville;
 
 public class Transformateur {
 
-    public ArrayList<Ville> transformer(Trajet trajet,int nb){
-        
+    public ArrayList<Ville> transformer(Trajet trajet){
+
         ArrayList<Ville> newSolution = trajet.obtenirTour();
-            for(int i = 0 ; i < nb ; i ++){
 
             int tourPos1 = (int) (newSolution.size() * Math.random());
             int tourPos2 = (int) (newSolution.size() * Math.random());
@@ -20,7 +19,6 @@ public class Transformateur {
             newSolution.add(tourPos2, villeHasard1);
             newSolution.add(tourPos1, villeHasard2);
 
-            }
         return newSolution;
     }
 }
