@@ -14,6 +14,9 @@ public class Ville {
         this.numVille = numVille ;
     }
 
+    public Ville(int ligne, int col) {
+    }
+
     public int getX() {
         return x;
     }
