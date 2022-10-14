@@ -11,6 +11,9 @@ public class Tour {
     private ArrayList<Ville> tour= new ArrayList<Ville>();
     private double distance=0;
     private Vector<Integer> randGenerate = new Vector<Integer>();
+    public Vector<Integer> getRandGenerate() {
+        return randGenerate;
+    }
     private int numeroTour; 
     
     public int getNumeroTour() {
@@ -87,7 +90,7 @@ public class Tour {
     public String toString(){
         String geneString = "|" ;
         for(int i=0 ; i< this.tourNombreDeVille(); i++){
-            geneString += obtenirUneVilleVisiter(i)+"|";
+            geneString += obtenirUneVilleVisiter(i).getNumVille()+"|";
         }
 
         return geneString;
