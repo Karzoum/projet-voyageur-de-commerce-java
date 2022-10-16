@@ -1,19 +1,19 @@
 package methode.coloniedesfourmies;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
-import villechemin.*;
+//import villechemin.*;
 public class Colonie_des_fourmis {
-    private ArrayList<Trajet> composantes;
-    private int nomberFourmis;
-    private double tauxApprentissage;
-    private double tauxEvaporation;
-    private double valIniPhero;
-    private double heurC;
-    private double pheroC;
-    private int t;
-    private double q;
-    private ArrayList<Trajet> meilleurSentier;
+    //private ArrayList<Trajet> composantes;
+    //private int nomberFourmis;
+    //private double tauxApprentissage;
+   // private double tauxEvaporation;
+   // private double valIniPhero;
+    //private double heurC;
+    //private double pheroC;
+    //private int t;
+    //private double q;
+    //private ArrayList<Trajet> meilleurSentier;
 /* 
     public void colonie_des_fourmis(TourManager lesVilles,int nombreFourmis,double alpha,double gamma,double beta,double eta,double epsillon,int t,double q){
         this.composantes = this.InitialiserLescomposant(lesVilles,gamma);
@@ -38,7 +38,7 @@ public class Colonie_des_fourmis {
         }
 
     }
-*/
+
     public Ville SelectionnerVille(ArrayList<Ville> Destination,Double[][] pheromones){
         for(Ville ville : Destination){
            // if();
@@ -57,5 +57,7 @@ public class Colonie_des_fourmis {
         }
         return C;
     }
+*/
+    
 
 }
