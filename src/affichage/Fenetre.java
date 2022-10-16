@@ -11,20 +11,14 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 	public static JFrame frame;
 	public static JButton lancer;
 	public static JButton stoper, test;
-	public JTextField villeField, cheminField, generationField, mutationField;
+	public static JTextArea infoArea;
 	public JMenuBar barreMenu;
 	public static JProgressBar progressBar;
 	public Thread monThread;
-	public Runnable threadTache;
+	private JRadioButton saveVilles;
+	private JRadioButton recupVilles;
 	public static boolean running = false, pause = false;
-	public static int nbVilles,nbChemins, nbGene, nbMutations;
-	public static double nbPourcent;
-	public static JTextArea infoArea;
-	private final String VILLE = "Nombre de villes ?", 
-						CHEMIN = "Nombre de chemin ?",
-						GENE = "Nombre de générations ?",
-						MUTATION = "Nombre de mutations ?";
-	public static JRadioButton saveVilles, recupVilles;
+	
 	
 	public Fenetre()
 	{
@@ -46,12 +40,6 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 		JPanel droitPanel = new JPanel(new GridBagLayout());
 		JPanel fondPanel = new JPanel(new BorderLayout());
 		
-		GridBagConstraints c = new GridBagConstraints ();
-		JLabel villeLabel = new JLabel(VILLE);
-		JLabel cheminLabel = new JLabel(CHEMIN);
-		JLabel generationLabel = new JLabel(GENE);
-		JLabel mutationLabel = new JLabel(MUTATION);
-		
 		progressBar = new JProgressBar();
 			progressBar.setMinimum(0);
 			progressBar.setStringPainted(true);
@@ -71,14 +59,6 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 			buttonGrp.add(saveVilles);
 			buttonGrp.add(recupVilles);
 		
-		villeField = new JTextField(15);
-			villeField.addFocusListener(this);
-		cheminField = new JTextField(15);
-			cheminField.addFocusListener(this);
-		generationField = new JTextField(15);
-			generationField.addFocusListener(this);
-		mutationField = new JTextField(15);
-			mutationField.addFocusListener(this);
 		
 		lancer = new JButton(new ImageIcon(getClass().getResource("/play.png")));
 			lancer.addActionListener(this);
@@ -91,134 +71,14 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 			centrPanel.add(new MonJPanel());
 		panel.add(droitPanel, BorderLayout.EAST);
 		
-					c.anchor = GridBagConstraints.NORTH;
-					c.fill = GridBagConstraints.HORIZONTAL;
-					c.gridx = 0;
-					c.gridy = 0;
-					c.gridwidth = 2; 
-					c.insets = new Insets(0,0,5,0);
-					c.weightx = 1;
-				droitPanel.add(saveVilles,c);
-					c.fill = GridBagConstraints.HORIZONTAL;
-					c.gridx = 0;
-					c.gridy = 1;
-					c.gridwidth = 2;  
-					c.insets = new Insets(0,0,5,0);
-				droitPanel.add(recupVilles,c);
-					c.fill = GridBagConstraints.HORIZONTAL;
-					c.gridx = 0;
-					c.gridy = 2;
-					c.gridwidth = 2;  
-					c.insets = new Insets(0,0,5,0);
-				droitPanel.add(villeLabel,c);
-					c.fill = GridBagConstraints.HORIZONTAL;
-					c.gridx = 0;
-					c.gridy = 3;
-					c.gridwidth = 2;  
-					c.insets = new Insets(0,0,5,0);
-				droitPanel.add(villeField,c);
-					c.fill = GridBagConstraints.HORIZONTAL;
-					c.gridx = 0;
-					c.gridy = 4;
-					c.gridwidth = 2;  
-					c.insets = new Insets(0,0,5,0);
-				droitPanel.add(cheminLabel,c);
-					c.fill = GridBagConstraints.HORIZONTAL;
-					c.gridx = 0;
-					c.gridy = 5;
-					c.gridwidth = 2;  
-					c.insets = new Insets(0,0,5,0);
-				droitPanel.add(cheminField,c);
-					c.fill = GridBagConstraints.HORIZONTAL;
-					c.gridx = 0;
-					c.gridy = 6;
-					c.gridwidth = 2;  
-					c.insets = new Insets(0,0,5,0);
-				droitPanel.add(generationLabel,c);
-					c.fill = GridBagConstraints.HORIZONTAL;
-					c.gridx = 0;
-					c.gridy = 7;
-					c.gridwidth = 2;  
-					c.insets = new Insets(0,0,5,0);
-				droitPanel.add(generationField,c);
-					c.fill = GridBagConstraints.HORIZONTAL;
-					c.gridx = 0;
-					c.gridy = 8;
-					c.gridwidth = 2;  
-					c.insets = new Insets(0,0,5,0);
-				droitPanel.add(mutationLabel,c);
-					c.fill = GridBagConstraints.HORIZONTAL;
-					c.gridx = 0;
-					c.gridy = 9;
-					c.gridwidth = 2; 
-					c.insets = new Insets(0,0,5,0);
-				droitPanel.add(mutationField,c);
-					c.fill = GridBagConstraints.HORIZONTAL;
-					c.gridx = 0;
-					c.gridy = 10;
-					c.gridwidth = 1;  
-					c.insets = new Insets(0,0,0,0);
-					c.weightx = 2;
-				droitPanel.add(lancer,c);
-					c.fill = GridBagConstraints.HORIZONTAL;
-					c.gridx = 1;
-					c.gridy = 10;
-					c.gridwidth = 1;  
-					c.insets = new Insets(0,0,0,0);
-				droitPanel.add(stoper,c);
-					c.fill = GridBagConstraints.HORIZONTAL;
-					c.gridx = 0;
-					c.gridy = 11;
-					c.gridwidth = 2;  
-					c.insets = new Insets(25,0,0,0);
-				droitPanel.add(test, c);
 		panel.add(fondPanel, BorderLayout.SOUTH);
 			fondPanel.add(scroll, BorderLayout.CENTER);
 			fondPanel.add(progressBar, BorderLayout.SOUTH);
 		
 		return panel;
 	}
-
-	public void actionPerformed(ActionEvent e)
-	{
-		Object src = e.getSource();
-		
-		if(src == lancer) {
-			if ((!running) && conditions()) {
-				this.repaint();
-				nbPourcent = (double) Math.random();
-				infoArea.setText("Nouveau départ");
-				setInfoArea("Pourcentage pour les mutations: "+String.valueOf(nbPourcent));
-				progressBar.setString("");
-				progressBar.setValue(0);
-				threadTache = new MonRunnable();
-				monThread = new Thread(threadTache);
-				monThread.start();
-				lancer.setEnabled(false);
-				this.getRootPane().setDefaultButton(stoper);
-				running = true;
-			}else {
-				infoArea.append("Veuillez entrer des nombres décimaux...\n");
-			}
-		}else if(src == stoper && running) {
-			monThread.stop();
-			nbVilles = 0;
-			nbChemins = 0;
-			nbGene = 0;
-			nbMutations = 0;
-			nbPourcent = 0;
-			lancer.setEnabled(true);
-			this.getRootPane().setDefaultButton(lancer);
-			running = false;
-		}else if(src == test) {
-			new TestWay();
-		}
-	}
-	
-	/**
-	 * @return
-	 */
-	private boolean conditions() {
+	/*
+private boolean conditions() {
 		boolean condition = false;
 		
 		try {
@@ -257,9 +117,50 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 		((JTextComponent) e.getSource()).setCaretPosition(0);
 	}
 	
+
+	 * public void actionPerformed(ActionEvent e)
+	{
+		Object src = e.getSource();
+		
+		if(src == lancer) {
+			if ((!running) && conditions()) {
+				this.repaint();
+				nbPourcent = (double) Math.random();
+				infoArea.setText("Nouveau départ");
+				setInfoArea("Pourcentage pour les mutations: "+String.valueOf(nbPourcent));
+				progressBar.setString("");
+				progressBar.setValue(0);
+				threadTache = new MonRunnable();
+				monThread = new Thread(threadTache);
+				monThread.start();
+				lancer.setEnabled(false);
+				this.getRootPane().setDefaultButton(stoper);
+				running = true;
+			}else {
+				infoArea.append("Veuillez entrer des nombres décimaux...\n");
+			}
+		}else if(src == stoper && running) {
+			monThread.stop();
+			nbVilles = 0;
+			nbChemins = 0;
+			nbGene = 0;
+			nbMutations = 0;
+			nbPourcent = 0;
+			lancer.setEnabled(true);
+			this.getRootPane().setDefaultButton(lancer);
+			running = false;
+		}else if(src == test) {
+			new TestWay();
+		}
+	}
+	
 	/**
-	 * @param infoArea the infoArea to set
+	 * @return
 	 */
+	
+	/*
+	 * @param infoArea the infoArea to set
+	 
 	public static void setInfoArea(final String text) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -297,5 +198,6 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 		frame = new Fenetre();
 		frame.setVisible(true);
 	}
+	 */
 
 }
