@@ -17,13 +17,12 @@ public class GeneRunnable implements Runnable {
     public double nbPourcent = Fenetre.nbPourcent;
     public int a = 0;
 
-    public static TourManager lesVilles;
-    public static Individu meilleur;
-    
- 
+    public static Individu meilleur = new Individu();
+
+    public ArrayList<Ville> lesVille;
 
     public static ArrayList<Ville> obtenirVilles() {
-        return null;
+        return meilleur.getGenotype();
     }
 
     public static Tour obtenirMeilleurTour() {
@@ -33,8 +32,8 @@ public class GeneRunnable implements Runnable {
     
     @Override
     public void run() {
-        
-        // TODO Auto-generated method stub
+
+        lesVille = Fenetre.lesVilles;
         Selecteur selecteur = new Selecteur();
         EntreCroiseur croiseur = new EntreCroiseur();
         long time = System.currentTimeMillis();
@@ -45,16 +44,15 @@ public class GeneRunnable implements Runnable {
 
         Evaluateur evaluateur = new Evaluateur();
 
-        Generation generation = generateur.getGeneration(nbIndividu, lesVilles);
+        Generation generation = generateur.getGeneration(nbIndividu, lesVille);
 
         population.ajouterGeneration(generation);
-
-        meilleur = null;
 
         do{
             Generation newGeneration = new Generation(generation.getNumeroGeneration()+1);
             
             evaluateur.evaluer(generation);
+
             for(int i = 0; i < nbIndividu/2 ; i ++){
 
                 Individu papa =selecteur.Selection(generation);
@@ -70,7 +68,6 @@ public class GeneRunnable implements Runnable {
                     }
                 }
                 newGeneration.ajouterGroupeIndividu(lesEnfants);
-
             }
             generation = newGeneration;
             a++;
@@ -80,11 +77,9 @@ public class GeneRunnable implements Runnable {
         final int min = (int) (dureeTotal /(60*1000F));
         final int sec = (int) ((dureeTotal %(60*1000F))/1000F);
 
-
-        if(meilleur == null){
             evaluateur.evaluer(generation);
             meilleur = generation.getMeilleurIndividu();
-        }
+    
     }
 
 }

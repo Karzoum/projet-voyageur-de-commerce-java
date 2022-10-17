@@ -10,7 +10,7 @@ public class Mediateur_R_T {
     private Trajet meilleur ;
     private ArrayList<Trajet> tabuList = new ArrayList<Trajet>();
 
-    public void recherchetabou(TourManager lesVilles, int nb, int tailleTabuList, int nbIteration){
+    public void recherchetabou(ArrayList<Ville> lesVilles, int nb, int tailleTabuList, int nbIteration){
         int n = 0;
         Trajet solution = new Trajet();
         solution.generateIndividual(lesVilles);

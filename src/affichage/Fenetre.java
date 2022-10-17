@@ -1,11 +1,13 @@
 package affichage;
 
 import java.awt.event.*;
+import java.util.ArrayList;
 
 //import javax.swing.text.*;
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 
-import villechemin.TourManager;
+import villechemin.*;
 
 import java.awt.*;
 
@@ -23,19 +25,19 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 	private JRadioButton recupVilles;
 	private String algorithme[] = { "Génétique", "Recuit_Simulé", "Séparation_Evaluation", "Colonis_Des_Fourmis",
 			"Recherche_Tabou" };
-	
+
 	private int indexAlgo = 0;
 
 	public static boolean running = false, pause = false;
 
-	public static int nbVilles,nbGeneration,nbMutation,nbIndividu;
+	public static int nbVilles, nbGeneration, nbMutation, nbIndividu;
 	public static double nbPourcent;
 
 	public static int initTemp, critTemp, tauxRef;
 
 	public static int tailleTL, nbIteration, nbTransf;
-	
-	public static TourManager lesVilles;
+
+	public static ArrayList<Ville> lesVilles;
 
 	public BrancheAndBoundJPanel banbJPanel = new BrancheAndBoundJPanel();
 	public RecuitJPanel recuitJPanel = new RecuitJPanel();
@@ -165,37 +167,37 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 
 		return panel;
 	}
+
+	private boolean conditions() {
+		boolean condition = false;
+
+		try {
+			nbVilles = Integer.parseInt(GeneJPanel.villeField.getText());
+			condition = true;
+		} catch (NumberFormatException f) {
+			condition = false;
+		}
+		try {
+			nbIndividu = Integer.parseInt(GeneJPanel.individuField.getText());
+			condition = true;
+		} catch (NumberFormatException f) {
+			condition = false;
+		}
+		try {
+			nbGeneration = Integer.parseInt(GeneJPanel.generationField.getText());
+			condition = true;
+		} catch (NumberFormatException f) {
+			condition = false;
+		}
+		try {
+			nbMutation = Integer.parseInt(GeneJPanel.mutationField.getText());
+			condition = true;
+		} catch (NumberFormatException f) {
+			condition = false;
+		}
+		return condition;
+	}
 	/*
-	 * private boolean conditions() {
-	 * boolean condition = false;
-	 * 
-	 * try {
-	 * nbVilles = Integer.parseInt(villeField.getText());
-	 * condition = true;
-	 * } catch (NumberFormatException f) {
-	 * condition = false;
-	 * }
-	 * try {
-	 * nbChemins = Integer.parseInt(cheminField.getText());
-	 * condition = true;
-	 * } catch (NumberFormatException f) {
-	 * condition = false;
-	 * }
-	 * try {
-	 * nbGene = Integer.parseInt(generationField.getText());
-	 * condition = true;
-	 * } catch (NumberFormatException f) {
-	 * condition = false;
-	 * }
-	 * try {
-	 * nbMutations = Integer.parseInt(mutationField.getText());
-	 * condition = true;
-	 * } catch (NumberFormatException f) {
-	 * condition = false;
-	 * }
-	 * return condition;
-	 * }
-	 * 
 	 * public void focusGained(FocusEvent e) {
 	 * this.getRootPane().setDefaultButton(lancer);
 	 * ((JTextComponent) e.getSource()).selectAll();
@@ -249,17 +251,16 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		// TODO Auto-generated method stub
 		Object src = e.getSource();
-		
+
 		if (src == recupVilles) {
 			if (recupVilles.isSelected()) {
-				geneJPanel.villeField.setEnabled(false);
+				GeneJPanel.villeField.setEnabled(false);
 			} else {
-				geneJPanel.villeField.setEnabled(true);
+				GeneJPanel.villeField.setEnabled(true);
 			}
 		}
-		if(e.getID() == ItemEvent.ITEM_STATE_CHANGED) {
+		if (e.getID() == ItemEvent.ITEM_STATE_CHANGED) {
 			if (e.getStateChange() == ItemEvent.SELECTED) {
 				Object item = e.getItem();
 				if (item == "Génétique") {
@@ -274,32 +275,28 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 					this.droitPanel.add(recuitJPanel, BorderLayout.CENTER, 1);
 					this.droitPanel.revalidate();
 					this.indexAlgo = 1;
-					System.out.println(indexAlgo);
 
 				}
-				
+
 				if (item == "Séparation_Evaluation") {
 					this.droitPanel.remove(1);
 					this.droitPanel.add(banbJPanel, BorderLayout.CENTER, 1);
 					this.droitPanel.revalidate();
 					this.indexAlgo = 2;
-					System.out.println(indexAlgo);
 
 				}
-				if(item == "Colonis_Des_Fourmis"){
+				if (item == "Colonis_Des_Fourmis") {
 					this.droitPanel.remove(1);
 					this.droitPanel.add(colonieJPanel, BorderLayout.CENTER, 1);
 					this.droitPanel.revalidate();
 					this.indexAlgo = 3;
-					System.out.println(indexAlgo);
 
 				}
-				if(item == "Recherche_Tabou"){
+				if (item == "Recherche_Tabou") {
 					this.droitPanel.remove(1);
 					this.droitPanel.add(tabouJPanel, BorderLayout.CENTER, 1);
 					this.droitPanel.revalidate();
 					this.indexAlgo = 4;
-					System.out.println(indexAlgo);
 
 				}
 			}
@@ -308,26 +305,32 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 
 	@Override
 	public void focusGained(FocusEvent e) {
-		// TODO Auto-generated method stub
+		this.getRootPane().setDefaultButton(lancer);
+		((JTextComponent) e.getSource()).selectAll();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.FocusListener#focusLost(java.awt.event.FocusEvent)
+	 */
 	@Override
 	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
+		((JTextComponent) e.getSource()).selectAll();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 
 		Object src = e.getSource();
-		if(src == lancer){
-			if(!running && Conditions()){
-				if(indexAlgo == 0){
+		if (src == lancer) {
+			if (!running && conditions()) {
+				if (indexAlgo == 0) {
+					TourManager tour =new TourManager();
+					tour.ajouterVilleDeDestintion(nbVilles);
+					lesVilles = tour.ObtenirVilles();
 					this.repaint();
 					nbPourcent = (double) Math.random();
 					infoArea.setText("Nouveau départ de l'algorithme Génétique");
-					setInfoArea("Pourcentage pour la mutation : "+String.valueOf(nbPourcent));
+					setInfoArea("Pourcentage pour la mutation : " + String.valueOf(nbPourcent));
 					progressBar.setString("");
 					progressBar.setValue(0);
 					threadTache = new GeneRunnable();
@@ -335,9 +338,12 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 					monThread.start();
 					lancer.setEnabled(false);
 					this.getRootPane().setDefaultButton(stoper);
-					running = true ;
+					running = true;
 				}
-				if(indexAlgo == 1){
+				if (indexAlgo == 1) {
+					TourManager tour =new TourManager();
+					tour.ajouterVilleDeDestintion(nbVilles);
+					lesVilles = tour.ObtenirVilles();
 					this.repaint();
 					infoArea.setText("Nouveau départ de l'algorithme Recuit Simulé");
 					progressBar.setString("");
@@ -349,7 +355,10 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 					this.getRootPane().setDefaultButton(stoper);
 					running = true;
 				}
-				if(indexAlgo == 2){
+				if (indexAlgo == 2) {
+					TourManager tour =new TourManager();
+					tour.ajouterVilleDeDestintion(nbVilles);
+					lesVilles = tour.ObtenirVilles();
 					this.repaint();
 					infoArea.setText("Nouveau Départ de l'algorithme Séparation et évaluation");
 					progressBar.setString("");
@@ -361,7 +370,10 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 					this.getRootPane().setDefaultButton(stoper);
 					running = true;
 				}
-				if(indexAlgo == 3){
+				if (indexAlgo == 3) {
+					TourManager tour =new TourManager();
+					tour.ajouterVilleDeDestintion(nbVilles);
+					lesVilles = tour.ObtenirVilles();
 					this.repaint();
 					infoArea.setText("Nouveau Départ de l'algorithme Système de colonis des fourmis");
 					progressBar.setString("");
@@ -373,7 +385,10 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 					this.getRootPane().setDefaultButton(stoper);
 					running = true;
 				}
-				if(indexAlgo == 4){
+				if (indexAlgo == 4) {
+					TourManager tour =new TourManager();
+					tour.ajouterVilleDeDestintion(nbVilles);
+					lesVilles = tour.ObtenirVilles();
 					this.repaint();
 					infoArea.setText("Nouveau Départ de l'algorithme de Récherche tabou");
 					progressBar.setString("");
@@ -385,51 +400,54 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 					this.getRootPane().setDefaultButton(stoper);
 					running = true;
 				}
-				
+
+			} else {
+				infoArea.append("Veuillez entrer des valeur....\n");
 			}
+
+		} else if (src == stoper && running) {
+			monThread.interrupt();
+			nbVilles = 0;
+			nbGeneration = 0;
+			nbMutation = 0;
+			nbIndividu = 0;
+			nbPourcent = 0;
+			initTemp = 0;
+			critTemp = 0;
+			tauxRef = 0;
+			tailleTL = 0;
+			nbIteration = 0;
+			nbTransf = 0;
+			lancer.setEnabled(true);
+			this.getRootPane().setDefaultButton(lancer);
+			running = false;
 		}
+
 	}
 
-	private void setInfoArea(String string) {
+	private void setInfoArea(final String text) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				infoArea.append("\n" + text);
+				infoArea.setCaretPosition(infoArea.getText().length());
+			}
+		});
 	}
 
-	private boolean Conditions() {
-		return false;
-	}
+	public static void main(String[] args) {
+		String lookAndFeelName = UIManager.getSystemLookAndFeelClassName();
 
-	/*
-	 * @param infoArea the infoArea to set
-	 * 
-	 * public static void setInfoArea(final String text) {
-	 * SwingUtilities.invokeLater(new Runnable() {
-	 * public void run() {
-	 * infoArea.append("\n"+text);
-	 * infoArea.setCaretPosition(infoArea.getText().length());
-	 * }
-	 * });
-	 * }
-	 * 
-	 * public void itemStateChanged(ItemEvent e) {
-	 * 
-	 * 
-	 * }
-	 * 
-	 * public static void main(String[] args)
-	 * {
-	 * String lookAndFeelName = UIManager.getSystemLookAndFeelClassName();
-	 * 
-	 * try {
-	 * 
-	 * UIManager.setLookAndFeel(lookAndFeelName);
-	 * }
-	 * catch (ClassNotFoundException e) {}
-	 * catch (InstantiationException e) {}
-	 * catch (IllegalAccessException e) {}
-	 * catch (UnsupportedLookAndFeelException e) {}
-	 * 
-	 * frame = new Fenetre();
-	 * frame.setVisible(true);
-	 * }
-	 */
+		try {
+
+			UIManager.setLookAndFeel(lookAndFeelName);
+		} catch (ClassNotFoundException e) {
+		} catch (InstantiationException e) {
+		} catch (IllegalAccessException e) {
+		} catch (UnsupportedLookAndFeelException e) {
+		}
+
+		frame = new Fenetre();
+		frame.setVisible(true);
+	}
 
 }

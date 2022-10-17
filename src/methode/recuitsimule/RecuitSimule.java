@@ -6,7 +6,7 @@ import villechemin.*;
 
 public class RecuitSimule {
 
-    private TourManager lesVilles = new TourManager();
+    private ArrayList<Ville> lesVilles = new ArrayList<Ville>();
     private double temp;
     private double lamda;
 
@@ -20,7 +20,7 @@ public class RecuitSimule {
     }
 
 
-    public void recuitsimulee(double tauxRefroidissement,TourManager tourManager,Double temp){
+    public void recuitsimulee(double tauxRefroidissement,ArrayList<Ville> tourManager,Double temp){
         this.lesVilles=tourManager;
         this.temp = temp;
         

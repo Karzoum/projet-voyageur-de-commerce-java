@@ -8,18 +8,18 @@ public class GeneJPanel extends JPanel {
 
     private GridBagLayout bagLayout = new GridBagLayout();
 
-    public JTextField villeField, cheminField,generationField, mutationField;
-    private final String VILLE = "Nombre de ?",
-            CHEMIN = "Nombre de chemin ?",
-            GENE = "Nombre de générations ?",
-            MUTATION = "Nombre de mutations ?";
+    public static JTextField villeField, individuField,generationField, mutationField;
+    private final String VILLE = "Nombre de ville ?",
+            CHEMIN = "Nombre d'individu ?",
+            GENE = "Nombre de génération ?",
+            MUTATION = "Nombre de mutation ?";
 
     public GeneJPanel() {
 
         this.setLayout(bagLayout);
 
         villeField = new JTextField(15);
-        cheminField = new JTextField(15);
+        individuField = new JTextField(15);
         generationField = new JTextField(15);
         mutationField = new JTextField(15);
  
@@ -54,7 +54,7 @@ public class GeneJPanel extends JPanel {
         c.gridy = 12;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
-        this.add(cheminField,c);
+        this.add(individuField,c);
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 16;

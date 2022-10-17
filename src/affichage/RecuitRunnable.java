@@ -1,14 +1,16 @@
 package affichage;
 
+import java.util.ArrayList;
+
 import methode.recuitsimule.Tour;
 import methode.recuitsimule.Transformeur;
-import villechemin.TourManager;
+import villechemin.*;
 
 public class RecuitRunnable implements Runnable {
 
     public int nbVille = Fenetre.nbVilles, initTemp = Fenetre.initTemp,
             tauxRef = Fenetre.tauxRef, critTemp = Fenetre.critTemp;
-    public TourManager lesVilles = Fenetre.lesVilles;
+    public ArrayList<Ville> lesVilles = Fenetre.lesVilles;
 
     private Tour meilleur;
 

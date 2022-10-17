@@ -9,7 +9,7 @@ public class TabouRunnable implements Runnable{
 
     public int nbVilles = Fenetre.nbVilles, tailleTabuList = Fenetre.tailleTL,
                 nbIteration = Fenetre.nbIteration, nb = Fenetre.nbTransf;
-    public TourManager lesVilles = Fenetre.lesVilles;
+    public ArrayList<Ville> lesVilles = Fenetre.lesVilles;
 
 private Trajet meilleur = null;
     private ArrayList<Trajet> tabuList;

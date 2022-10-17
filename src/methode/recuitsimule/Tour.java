@@ -95,15 +95,15 @@ public class Tour {
 
         return geneString;
     }
-      public void generateIndividual(TourManager lesVilles) {
+      public void generateIndividual(ArrayList<Ville> lesVilles) {
         int randIndex;
-		for (int i = 0; i < lesVilles.ObtenirNombreDeVille(); i++) {
+		for (int i = 0; i < lesVilles.size(); i++) {
 			do {
-				randIndex = (int) (Math.random()*lesVilles.ObtenirNombreDeVille());
+				randIndex = (int) (Math.random()*lesVilles.size());
 			}
 			while (randGenerate.contains(randIndex));
 			randGenerate.addElement(randIndex);
-            this.tour.add(lesVilles.ObtenirUneVille(randIndex));
+            this.tour.add(lesVilles.get(randIndex));
 
 		}
         }

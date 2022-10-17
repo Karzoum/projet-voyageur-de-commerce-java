@@ -2,7 +2,7 @@ package methode.genetique;
 
 import java.util.ArrayList;
 
-import villechemin.TourManager;
+import villechemin.*;
 
 public class Mediateur {
     
@@ -17,7 +17,7 @@ public class Mediateur {
     private Individu lePlusApte = new Individu();
     private int tailleGeneration = 0 ;
 
-    public void genetique(int nbIndividuGeneration, int nbIteration, Double q, TourManager L) {
+    public void genetique(int nbIndividuGeneration, int nbIteration, Double q, ArrayList<Ville> L) {
 
         this.generation = this.generateur.getGeneration(nbIndividuGeneration,L);
         this.lePlusApte = this.generation.getMeilleurIndividu();

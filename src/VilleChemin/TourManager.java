@@ -7,6 +7,7 @@ public class TourManager {
     
     private ArrayList<Ville> villesDeDestination= new ArrayList<Ville>();
 
+
     /**
      * @param ville
      */
@@ -38,6 +39,9 @@ public class TourManager {
     public int ObtenirNombreDeVille(){
         return villesDeDestination.size();
     }
-    
+
+    public ArrayList<Ville> ObtenirVilles() {
+        return this.villesDeDestination;
+    }
    
 }

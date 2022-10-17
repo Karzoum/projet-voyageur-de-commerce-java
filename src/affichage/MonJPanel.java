@@ -11,7 +11,7 @@ import villechemin.Ville;
 
 public class MonJPanel extends JPanel {
 
-    public ArrayList<Ville> lesVilles;
+    public ArrayList<Ville> lesVille;
     public Tour meilleur;
     public Vector<Integer> trajet;
 
@@ -32,7 +32,7 @@ public class MonJPanel extends JPanel {
             int taille = 0 ;
             try{
 
-                this.lesVilles = (ArrayList<Ville>) GeneRunnable.obtenirVilles();
+                this.lesVille = (ArrayList<Ville>) GeneRunnable.obtenirVilles();
                 this.meilleur = GeneRunnable.obtenirMeilleurTour();
                 this.trajet = this.meilleur.getRandGenerate();
                 taille = this.trajet.size();
@@ -42,10 +42,10 @@ public class MonJPanel extends JPanel {
 
             g.setColor(Color.RED);
 
-            for(int i = 0; i < lesVilles.size();i ++){
-                x = lesVilles.get(i).getX() * 6+20;
-                y = lesVilles.get(i).getY() * 5+20;
-                numVille = String.valueOf(lesVilles.get(i).getNumVille());
+            for(int i = 0; i < lesVille.size();i ++){
+                x = lesVille.get(i).getX() * 6+20;
+                y = lesVille.get(i).getY() * 5+20;
+                numVille = String.valueOf(lesVille.get(i).getNumVille());
                 g.fillRect(x, y, 5, 5);
                 g.drawString(numVille, x-5, y-5);
             }
@@ -53,17 +53,17 @@ public class MonJPanel extends JPanel {
 
             for(int i = 1; i < taille; i ++){
 
-                int xDep = this.lesVilles.get(trajet.elementAt(i-1)).getX()* 6+22;
-                int yDep = this.lesVilles.get(trajet.elementAt(i-1)).getY()* 5+22;
-                int xFin = this.lesVilles.get(trajet.elementAt(i)).getX()* 6+22;
-                int yFin = this.lesVilles.get(trajet.elementAt(i)).getY()* 5+22;
+                int xDep = this.lesVille.get(trajet.elementAt(i-1)).getX()* 6+22;
+                int yDep = this.lesVille.get(trajet.elementAt(i-1)).getY()* 5+22;
+                int xFin = this.lesVille.get(trajet.elementAt(i)).getX()* 6+22;
+                int yFin = this.lesVille.get(trajet.elementAt(i)).getY()* 5+22;
                 g.drawLine(xDep, yDep, xFin,yFin);
             }
 
-            int xDep = this.lesVilles.get(trajet.elementAt(0)).getX() * 6+22;
-            int yDep = this.lesVilles.get(trajet.elementAt(0)).getY()* 5+22;
-            int xFin = this.lesVilles.get(trajet.elementAt(taille-1)).getX()* 6+22;
-            int yFin = this.lesVilles.get(trajet.elementAt(taille-1)).getY()* 5+22;
+            int xDep = this.lesVille.get(trajet.elementAt(0)).getX() * 6+22;
+            int yDep = this.lesVille.get(trajet.elementAt(0)).getY()* 5+22;
+            int xFin = this.lesVille.get(trajet.elementAt(taille-1)).getX()* 6+22;
+            int yFin = this.lesVille.get(trajet.elementAt(taille-1)).getY()* 5+22;
             g.drawLine(xDep, yDep, xFin, yFin);
             trajetStr = String.valueOf(meilleur.EnergyTour());
             g.drawString(trajetStr, x, y);

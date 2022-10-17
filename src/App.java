@@ -1,7 +1,5 @@
 import affichage.Fenetre;
 //import affichage.GeneJPanel;
-import affichage.RecuitJPanel;
-
 //import methode.genetique.*;
 //import methode.recuitsimule.RecuitSimule;
 //import villechemin.TourManager;
