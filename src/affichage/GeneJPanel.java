@@ -5,8 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GeneJPanel extends JPanel {
-    public static int nbVilles, nbChemins, nbGene, nbMutations;
-    public static double nbPourcent;
+
     private GridBagLayout bagLayout = new GridBagLayout();
 
     public JTextField villeField, cheminField,generationField, mutationField;

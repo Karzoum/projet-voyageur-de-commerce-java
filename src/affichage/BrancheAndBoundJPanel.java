@@ -15,9 +15,8 @@ public class BrancheAndBoundJPanel extends JPanel {
 
         JLabel villeLabel = new JLabel(VILLE);
 
-        GridBagConstraints c = new GridBagConstraints();
-
         villeField = new JTextField(15);
+        
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.NORTH;
         c.fill = GridBagConstraints.BOTH;

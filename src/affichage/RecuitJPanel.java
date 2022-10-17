@@ -13,12 +13,7 @@ public class RecuitJPanel extends JPanel {
                           VILLE = "Nombre de ville ? :",
                           TEMPERATURE2 = "Temperature critique ? :";
     private  GridBagLayout recuitLayout = new GridBagLayout();
-
     public JTextField tempField, villeField, tauxField, tempField2;
-    public static int nbVilles, tempInitial,tempCr;
-    public static double tauxRef;
-    public static JTextArea infosArea;
-
     public RecuitJPanel(){
 
         this.setLayout(recuitLayout);

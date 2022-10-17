@@ -16,11 +16,18 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 	public Thread monThread;
 	private JRadioButton saveVilles;
 	private JRadioButton recupVilles;
-	private String algorithme[] = { "Génétique", "Recuit_Simulé", "Séparation_Evaluation", "Colonis Des Fourmis",
-			"Recherche Tabou" };
+	private String algorithme[] = { "Génétique", "Recuit_Simulé", "Séparation_Evaluation", "Colonis_Des_Fourmis",
+			"Recherche_Tabou" };
+
 	public static boolean running = false, pause = false;
+
+	public static int nbVilles,nbGeneration,nbMutation,nbIndividu,nbPourcent;
+
+	public BrancheAndBoundJPanel banbJPanel = new BrancheAndBoundJPanel();
 	public RecuitJPanel recuitJPanel = new RecuitJPanel();
-	public GeneJPanel geneJPanel;
+	public GeneJPanel geneJPanel = new GeneJPanel();
+	public ColonieJPanel colonieJPanel = new ColonieJPanel();
+	public TabouJPanel tabouJPanel = new TabouJPanel();
 
 	public Fenetre() {
 		this.setTitle("Problème du Voyageur de Commerce");
@@ -68,10 +75,13 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 		buttonGrp.add(recupVilles);
 
 		lancer = new JButton("lancer");
+		lancer.setBackground(Color.GREEN);
 		lancer.addActionListener(this);
 		stoper = new JButton("stoper");
+		stoper.setBackground(Color.RED);
 		stoper.addActionListener(this);
 		test = new JButton("Tester un chemin");
+		test.setBackground(Color.LIGHT_GRAY);
 		test.addActionListener(this);
 
 		panel.add(centrPanel, BorderLayout.CENTER);
@@ -131,6 +141,7 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 		c.gridwidth = 2;
 		c.insets = new Insets(25, 0, 0, 0);
 		droitPanel4.add(test, c);
+		droitPanel.setBackground(Color.BLACK);
 		droitPanel.add(droitPanel4, BorderLayout.SOUTH);
 
 		panel.add(fondPanel, BorderLayout.SOUTH);
@@ -225,7 +236,7 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
 		Object src = e.getSource();
-		Object item = e.getItem();
+		
 		if (src == recupVilles) {
 			if (recupVilles.isSelected()) {
 				geneJPanel.villeField.setEnabled(false);
@@ -233,20 +244,38 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 				geneJPanel.villeField.setEnabled(true);
 			}
 		}
-		if (e.getStateChange() == ItemEvent.SELECTED) {
-			if (item == "Recuit_Simulé") {
-				
-				this.droitPanel.remove(1);
-				this.droitPanel.add(recuitJPanel, BorderLayout.CENTER,1);
-				this.droitPanel.validate();
-			}
-			if (item == "Génétique") {
-				this.droitPanel.remove(1);
-				this.droitPanel.add(geneJPanel, BorderLayout.CENTER, 1);
-				this.droitPanel.validate();
+		if(e.getID() == ItemEvent.ITEM_STATE_CHANGED) {
+			if (e.getStateChange() == ItemEvent.SELECTED) {
+				Object item = e.getItem();
+				if (item == "Génétique") {
+					this.droitPanel.remove(1);
+					this.droitPanel.add(geneJPanel, BorderLayout.CENTER, 1);
+					this.droitPanel.revalidate();
+				}
+				if (item == "Recuit_Simulé") {
 
+					this.droitPanel.remove(1);
+					this.droitPanel.add(recuitJPanel, BorderLayout.CENTER, 1);
+					this.droitPanel.revalidate();
+				}
+				
+				if (item == "Séparation_Evaluation") {
+					this.droitPanel.remove(1);
+					this.droitPanel.add(banbJPanel, BorderLayout.CENTER, 1);
+					this.droitPanel.revalidate();
+
+				}
+				if(item == "Colonis_Des_Fourmis"){
+					this.droitPanel.remove(1);
+					this.droitPanel.add(colonieJPanel, BorderLayout.CENTER, 1);
+					this.droitPanel.revalidate();
+				}
+				if(item == "Recherche_Tabou"){
+					this.droitPanel.remove(1);
+					this.droitPanel.add(tabouJPanel, BorderLayout.CENTER, 1);
+					this.droitPanel.revalidate();
+				}
 			}
-			
 		}
 	}
 
