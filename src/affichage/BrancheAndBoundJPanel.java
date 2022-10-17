@@ -19,14 +19,14 @@ public class BrancheAndBoundJPanel extends JPanel {
         
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.NORTH;
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
         c.weightx = 1;
         this.add(villeLabel,c);
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 8;
         c.gridwidth = 2;

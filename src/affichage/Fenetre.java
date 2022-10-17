@@ -197,57 +197,6 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 		}
 		return condition;
 	}
-	/*
-	 * public void focusGained(FocusEvent e) {
-	 * this.getRootPane().setDefaultButton(lancer);
-	 * ((JTextComponent) e.getSource()).selectAll();
-	 * }
-	 * 
-	 * public void focusLost(FocusEvent e) {
-	 * ((JTextComponent) e.getSource()).setCaretPosition(0);
-	 * }
-	 * 
-	 * 
-	 * public void actionPerformed(ActionEvent e)
-	 * {
-	 * Object src = e.getSource();
-	 * 
-	 * if(src == lancer) {
-	 * if ((!running) && conditions()) {
-	 * this.repaint();
-	 * nbPourcent = (double) Math.random();
-	 * infoArea.setText("Nouveau départ");
-	 * setInfoArea("Pourcentage pour les mutations: "+String.valueOf(nbPourcent));
-	 * progressBar.setString("");
-	 * progressBar.setValue(0);
-	 * threadTache = new MonRunnable();
-	 * monThread = new Thread(threadTache);
-	 * monThread.start();
-	 * lancer.setEnabled(false);
-	 * this.getRootPane().setDefaultButton(stoper);
-	 * running = true;
-	 * }else {
-	 * infoArea.append("Veuillez entrer des nombres décimaux...\n");
-	 * }
-	 * }else if(src == stoper && running) {
-	 * monThread.stop();
-	 * nbVilles = 0;
-	 * nbChemins = 0;
-	 * nbGene = 0;
-	 * nbMutations = 0;
-	 * nbPourcent = 0;
-	 * lancer.setEnabled(true);
-	 * this.getRootPane().setDefaultButton(lancer);
-	 * running = false;
-	 * }else if(src == test) {
-	 * new TestWay();
-	 * }
-	 * }
-	 * 
-	 * /**
-	 * 
-	 * @return
-	 */
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
@@ -309,9 +258,6 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 		((JTextComponent) e.getSource()).selectAll();
 	}
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.FocusListener#focusLost(java.awt.event.FocusEvent)
-	 */
 	@Override
 	public void focusLost(FocusEvent e) {
 		((JTextComponent) e.getSource()).selectAll();

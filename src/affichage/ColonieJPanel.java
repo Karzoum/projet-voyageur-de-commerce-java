@@ -38,7 +38,7 @@ public class ColonieJPanel extends JPanel {
         GridBagConstraints c = new GridBagConstraints();
 
         c.anchor = GridBagConstraints.NORTH;
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 2;
@@ -46,91 +46,91 @@ public class ColonieJPanel extends JPanel {
         c.weightx = 1;
         this.add(tauxLabel,c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 4;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
         this.add(tauxField, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 8;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
         this.add(tauxEvapLabel, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 12;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
         this.add(tauxEvapField, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 20;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
         this.add(valeurLabel, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 24;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
         this.add(valeurField, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 28;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
         this.add(reglageLabel, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 32;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
         this.add(reglageField,c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 36;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
         this.add(reglageLabel2, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 42;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
         this.add(reglage2Field, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 46;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
         this.add(iterationLabel, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 50;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
         this.add(iterationField, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 54;
         c.gridwidth = 2;
         c.insets = new Insets(0, 0, 5, 0);
         this.add(probaLabel, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 58 ;
         c.gridwidth = 2;

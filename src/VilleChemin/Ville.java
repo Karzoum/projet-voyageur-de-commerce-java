@@ -9,8 +9,8 @@ public class Ville {
      */
 
     public Ville(int numVille) {
-        this.x=(int)(Math.random()*100);
-        this.y=(int)(Math.random()*100);
+        this.x= (int)(Math.random()*100);
+        this.y= (int)(Math.random()*100);
         this.numVille = numVille ;
     }
 
@@ -47,8 +47,4 @@ public class Ville {
         return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
     }
 
-    @Override
-    public String toString() {
-        return "Ville [numVille=" + numVille + ", x=" + x + ", y=" + y + "]";
-    }
 }

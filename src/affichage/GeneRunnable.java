@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import methode.genetique.*;
 import methode.recuitsimule.Tour;
-import villechemin.TourManager;
 import villechemin.Ville;
 
 public class GeneRunnable implements Runnable {
@@ -19,10 +18,10 @@ public class GeneRunnable implements Runnable {
 
     public static Individu meilleur = new Individu();
 
-    public ArrayList<Ville> lesVille;
+    public static ArrayList<Ville> lesVille;
 
     public static ArrayList<Ville> obtenirVilles() {
-        return meilleur.getGenotype();
+        return lesVille;
     }
 
     public static Tour obtenirMeilleurTour() {
@@ -78,8 +77,7 @@ public class GeneRunnable implements Runnable {
         final int sec = (int) ((dureeTotal %(60*1000F))/1000F);
 
             evaluateur.evaluer(generation);
-            meilleur = generation.getMeilleurIndividu();
-    
+            meilleur = generation.getMeilleurIndividu(); 
     }
 
 }

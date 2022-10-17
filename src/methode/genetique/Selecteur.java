@@ -5,7 +5,7 @@ public class Selecteur {
 
     private ArrayList<Double> lesScoreDeSelections;
     private ArrayList<Individu> lesIndividu;
-    private int indexdeSelection = -1;
+    private int indexdeSelection;
     private Individu individuSelectionner = new Individu();
 
     public Individu Selection(Generation generation) {
@@ -34,8 +34,7 @@ public class Selecteur {
         int n = (int) (Math.random() * lesScoreDeSelections.get(l-1) );
         
         for(int i = 1; i < l; i++ ){
-                int m = i-1;
-            if( this.lesScoreDeSelections.get(m) < n && n <= this.lesScoreDeSelections.get(i) ){
+            if( this.lesScoreDeSelections.get(i-1) < n && n <= this.lesScoreDeSelections.get(i) ){
                 indexdeSelection = i ;
             }
         }

@@ -31,28 +31,28 @@ public class RecuitJPanel extends JPanel {
         GridBagConstraints c = new GridBagConstraints();
 
             c.anchor = GridBagConstraints.NORTH;
-            c.fill = GridBagConstraints.BOTH;
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 0;
             c.gridy = 0;
             c.gridwidth = 2;
             c.insets = new Insets(0,0,5,0);
             c.weightx = 1;
             this.add(villeLabel, c);
-            c.fill = GridBagConstraints.BOTH;
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 0;
             c.gridy = 4;
             c.gridwidth = 2;
             c.insets = new Insets(0,0,5,0);
 
             this.add(villeField, c);  
-            c.fill = GridBagConstraints.BOTH;
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 0;
             c.gridy = 8;
             c.gridwidth = 2;
             c.insets = new Insets(0,0,5,0);
             this.add(tauxLabel, c);
 
-            c.fill = GridBagConstraints.BOTH;
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 0;
             c.gridy = 12;
             c.gridwidth = 2;
@@ -60,21 +60,21 @@ public class RecuitJPanel extends JPanel {
         
             this.add(tauxField, c);
 
-            c.fill = GridBagConstraints.BOTH;
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 0;
             c.gridy = 16;
             c.gridwidth = 2;
             c.insets = new Insets(0,0,5,0);
             
             this.add(tempJLabel, c);
-            c.fill = GridBagConstraints.BOTH;
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 0;
             c.gridy = 20;
             c.gridwidth = 2;
             c.insets = new Insets(0,0,5,0);
            
             this.add(tempField, c);
-            c.fill = GridBagConstraints.BOTH;
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 0;
             c.gridy = 24;
             c.gridwidth = 2;

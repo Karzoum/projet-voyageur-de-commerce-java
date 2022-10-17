@@ -41,7 +41,7 @@ public class Generateur {
 
 		for (int i = 0 ; i < taille ; i++) {
 			do {
-				randIndex = (int) (Math.random() *  gene.size()+1);
+				randIndex = (int) (Math.random() * gene.size());
 			}
 			while (geneIndividu.contains(randIndex)); 
 

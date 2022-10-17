@@ -23,7 +23,7 @@ public class TabouJPanel extends JPanel {
         GridBagConstraints c = new GridBagConstraints();
 
         c.anchor = GridBagConstraints.NORTH;
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 2;
@@ -31,35 +31,35 @@ public class TabouJPanel extends JPanel {
         c.weightx = 1;
         this.add(nbLabel, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 4;
         c.gridwidth = 2;
         c.insets = new Insets(0,0,5,0);
         this.add(nbField, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 8;
         c.gridwidth = 2;
         c.insets = new Insets(0,0,5,0);
         this.add(tailleLabel, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 12;
         c.gridwidth = 2;
         c.insets = new Insets(0,0,5,0);
         this.add(tailleField, c);
         
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 16;
         c.gridwidth = 2;
         c.insets = new Insets(0,0,5,0);
         this.add(iterationLabel, c);
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 20;
         c.gridwidth = 2;
