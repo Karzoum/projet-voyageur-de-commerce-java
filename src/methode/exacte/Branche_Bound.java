@@ -5,7 +5,7 @@ import java.util.Random;
 
 import villechemin.Ville;
 
-public class Branche_Bound {
+public class Branche_Bound { 
 
     private final int nblignes;
     private final int nbCols;

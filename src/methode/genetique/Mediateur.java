@@ -13,7 +13,7 @@ public class Mediateur {
     private Population<Generation> population = new Population<Generation>();
     private Selecteur selecteur = new Selecteur();
     private Mutateur mutateur;
-    private EntreCroiseur croissement = new EntreCroiseur();
+      private EntreCroiseur croissement = new EntreCroiseur();
     private Individu lePlusApte = new Individu();
     private int tailleGeneration = 0 ;
 

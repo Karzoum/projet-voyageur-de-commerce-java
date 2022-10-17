@@ -19,25 +19,14 @@ public class RecuitSimule {
         }
     }
 
-    public ArrayList<Ville> transformation(Tour solutionCourante){
-        ArrayList<Ville> newSolution = solutionCourante.obtenirTour();
-
-            int tourPos1 = (int) (newSolution.size() * Math.random());
-            int tourPos2 = (int) (newSolution.size() * Math.random());
-
-            Ville villeHasard1 = newSolution.get(tourPos1);
-            Ville villeHasard2 = newSolution.get(tourPos2);
-
-            newSolution.add(tourPos2, villeHasard1);
-            newSolution.add(tourPos1, villeHasard2);
-        
-        return newSolution;
-    }
 
     public void recuitsimulee(double tauxRefroidissement,TourManager tourManager,Double temp){
         this.lesVilles=tourManager;
         this.temp = temp;
+        
         Tour solutionCourante=new Tour();
+
+        Transformeur transformeur = new Transformeur();
 
         solutionCourante.generateIndividual(lesVilles);
 
@@ -46,7 +35,7 @@ public class RecuitSimule {
 
         while( temp > 1){
             // R <- Tweak(Copy(S))
-            Tour newSolution = new Tour(transformation(solutionCourante));
+            Tour newSolution = new Tour(transformeur.transforme(solutionCourante));
             if(solutionCourante.EnergyTour() < newSolution.EnergyTour()){
                 solutionCourante = newSolution;
             }
@@ -61,6 +50,7 @@ public class RecuitSimule {
             }
             temp += (1-lamda) * tauxRefroidissement;
         }
+
         System.out.println(" Distance initiale de la solution"+ meilleur);
 
     }

@@ -32,8 +32,8 @@ public class MonJPanel extends JPanel {
             int taille = 0 ;
             try{
 
-                this.lesVilles = (ArrayList<Ville>) MonRunnable.obtenirVilles();
-                this.meilleur = MonRunnable.obtenirMeilleurTour();
+                this.lesVilles = (ArrayList<Ville>) GeneRunnable.obtenirVilles();
+                this.meilleur = GeneRunnable.obtenirMeilleurTour();
                 this.trajet = this.meilleur.getRandGenerate();
                 taille = this.trajet.size();
             }catch(NullPointerException e){

@@ -1,11 +1,16 @@
 package affichage;
 
 import java.awt.event.*;
+
 //import javax.swing.text.*;
 import javax.swing.*;
+
+import villechemin.TourManager;
+
 import java.awt.*;
 
 public class Fenetre extends JFrame implements ActionListener, FocusListener, ItemListener {
+
 	public static JFrame frame;
 	public static JButton lancer;
 	public static JButton stoper, test;
@@ -18,16 +23,26 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 	private JRadioButton recupVilles;
 	private String algorithme[] = { "Génétique", "Recuit_Simulé", "Séparation_Evaluation", "Colonis_Des_Fourmis",
 			"Recherche_Tabou" };
+	
+	private int indexAlgo = 0;
 
 	public static boolean running = false, pause = false;
 
-	public static int nbVilles,nbGeneration,nbMutation,nbIndividu,nbPourcent;
+	public static int nbVilles,nbGeneration,nbMutation,nbIndividu;
+	public static double nbPourcent;
+
+	public static int initTemp, critTemp, tauxRef;
+
+	public static int tailleTL, nbIteration, nbTransf;
+	
+	public static TourManager lesVilles;
 
 	public BrancheAndBoundJPanel banbJPanel = new BrancheAndBoundJPanel();
 	public RecuitJPanel recuitJPanel = new RecuitJPanel();
 	public GeneJPanel geneJPanel = new GeneJPanel();
 	public ColonieJPanel colonieJPanel = new ColonieJPanel();
 	public TabouJPanel tabouJPanel = new TabouJPanel();
+	private Runnable threadTache;
 
 	public Fenetre() {
 		this.setTitle("Problème du Voyageur de Commerce");
@@ -251,29 +266,41 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 					this.droitPanel.remove(1);
 					this.droitPanel.add(geneJPanel, BorderLayout.CENTER, 1);
 					this.droitPanel.revalidate();
+					this.indexAlgo = 0;
 				}
 				if (item == "Recuit_Simulé") {
 
 					this.droitPanel.remove(1);
 					this.droitPanel.add(recuitJPanel, BorderLayout.CENTER, 1);
 					this.droitPanel.revalidate();
+					this.indexAlgo = 1;
+					System.out.println(indexAlgo);
+
 				}
 				
 				if (item == "Séparation_Evaluation") {
 					this.droitPanel.remove(1);
 					this.droitPanel.add(banbJPanel, BorderLayout.CENTER, 1);
 					this.droitPanel.revalidate();
+					this.indexAlgo = 2;
+					System.out.println(indexAlgo);
 
 				}
 				if(item == "Colonis_Des_Fourmis"){
 					this.droitPanel.remove(1);
 					this.droitPanel.add(colonieJPanel, BorderLayout.CENTER, 1);
 					this.droitPanel.revalidate();
+					this.indexAlgo = 3;
+					System.out.println(indexAlgo);
+
 				}
 				if(item == "Recherche_Tabou"){
 					this.droitPanel.remove(1);
 					this.droitPanel.add(tabouJPanel, BorderLayout.CENTER, 1);
 					this.droitPanel.revalidate();
+					this.indexAlgo = 4;
+					System.out.println(indexAlgo);
+
 				}
 			}
 		}
@@ -282,19 +309,92 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 	@Override
 	public void focusGained(FocusEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void focusLost(FocusEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
+		Object src = e.getSource();
+		if(src == lancer){
+			if(!running && Conditions()){
+				if(indexAlgo == 0){
+					this.repaint();
+					nbPourcent = (double) Math.random();
+					infoArea.setText("Nouveau départ de l'algorithme Génétique");
+					setInfoArea("Pourcentage pour la mutation : "+String.valueOf(nbPourcent));
+					progressBar.setString("");
+					progressBar.setValue(0);
+					threadTache = new GeneRunnable();
+					monThread = new Thread(threadTache);
+					monThread.start();
+					lancer.setEnabled(false);
+					this.getRootPane().setDefaultButton(stoper);
+					running = true ;
+				}
+				if(indexAlgo == 1){
+					this.repaint();
+					infoArea.setText("Nouveau départ de l'algorithme Recuit Simulé");
+					progressBar.setString("");
+					progressBar.setValue(0);
+					threadTache = new RecuitRunnable();
+					monThread = new Thread(threadTache);
+					monThread.start();
+					lancer.setEnabled(false);
+					this.getRootPane().setDefaultButton(stoper);
+					running = true;
+				}
+				if(indexAlgo == 2){
+					this.repaint();
+					infoArea.setText("Nouveau Départ de l'algorithme Séparation et évaluation");
+					progressBar.setString("");
+					progressBar.setValue(0);
+					threadTache = new BandBRunnable();
+					monThread = new Thread(threadTache);
+					monThread.start();
+					lancer.setEnabled(false);
+					this.getRootPane().setDefaultButton(stoper);
+					running = true;
+				}
+				if(indexAlgo == 3){
+					this.repaint();
+					infoArea.setText("Nouveau Départ de l'algorithme Système de colonis des fourmis");
+					progressBar.setString("");
+					progressBar.setValue(0);
+					threadTache = new ColonieRunnable();
+					monThread = new Thread(threadTache);
+					monThread.start();
+					lancer.setEnabled(false);
+					this.getRootPane().setDefaultButton(stoper);
+					running = true;
+				}
+				if(indexAlgo == 4){
+					this.repaint();
+					infoArea.setText("Nouveau Départ de l'algorithme de Récherche tabou");
+					progressBar.setString("");
+					progressBar.setValue(0);
+					threadTache = new TabouRunnable();
+					monThread = new Thread(threadTache);
+					monThread.start();
+					lancer.setEnabled(false);
+					this.getRootPane().setDefaultButton(stoper);
+					running = true;
+				}
+				
+			}
+		}
+	}
+
+	private void setInfoArea(String string) {
+	}
+
+	private boolean Conditions() {
+		return false;
 	}
 
 	/*
