@@ -13,7 +13,7 @@ import villechemin.Ville;
 public class MonJPanel extends JPanel {
 
     public ArrayList<Ville> lesVille = new ArrayList<Ville>();
-    public Tour meilleur;
+    public Tour meilleur = new Tour();
     public Vector<Integer> trajet;
 
     public void paintComponent(Graphics g){
@@ -53,19 +53,19 @@ public class MonJPanel extends JPanel {
 
             for(int i = 1; i < taille; i ++){
                 System.out.println(trajet.elementAt(i));
-                int xDep = this.lesVille.get(trajet.get(i-1)).getX()* 6+22;
-                int yDep = this.lesVille.get(trajet.get(i-1)).getY()* 5+22;
-                int xFin = this.lesVille.get(trajet.get(i)).getX()* 6+22;
-                int yFin = this.lesVille.get(trajet.get(i)).getY()* 5+22;
+                int xDep = this.lesVille.get(trajet.elementAt(i-1)).getX()* 6+22;
+                int yDep = this.lesVille.get(trajet.elementAt(i-1)).getY()* 5+22;
+                int xFin = this.lesVille.get(trajet.elementAt(i)).getX()* 6+22;
+                int yFin = this.lesVille.get(trajet.elementAt(i)).getY()* 5+22;
                 g.drawLine(xDep, yDep, xFin,yFin);
                 trajetStr = String.valueOf(meilleur.EnergyTour());
                 g.drawString(trajetStr, this.getX()+20, this.getY()+30);
             }
 
-            //int xDep = this.lesVille.get(trajet.get(0)).getX()*6+22;
-            //int yDep = this.lesVille.get(trajet.get(0)).getY()* 5+22;
-            //int xFin = this.lesVille.get(trajet.get(taille-1)).getX()* 6+22;
-            //int yFin = this.lesVille.get(trajet.get(taille-1)).getY()* 5+22;
+            //int xDep = this.lesVille.get(trajet.elementAt(0)).getX()*6+22;
+            //int yDep = this.lesVille.get(trajet.elementAt(0)).getY()* 5+22;
+            //int xFin = this.lesVille.get(trajet.elementAt(taille-1)).getX()* 6+22;
+            //int yFin = this.lesVille.get(trajet.elementAt(taille-1)).getY()* 5+22;
             //g.drawLine(xDep, yDep, xFin, yFin);
             //trajetStr = String.valueOf(meilleur.EnergyTour());
             //g.drawString(trajetStr, x, y);

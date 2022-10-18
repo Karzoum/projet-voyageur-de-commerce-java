@@ -16,9 +16,17 @@ public class GeneRunnable implements Runnable {
     public double nbPourcent = Fenetre.nbPourcent;
     public int a = 0;
 
-    public static Individu meilleur = new Individu();
+    private static Individu meilleur;
 
-    public static ArrayList<Ville> lesVille;
+    public static Individu getMeilleur() {
+        return meilleur;
+    }
+
+    public static void setMeilleur(Individu meilleur) {
+        GeneRunnable.meilleur = meilleur;
+    }
+
+    private static ArrayList<Ville> lesVille;
 
     public static ArrayList<Ville> obtenirVilles() {
         return lesVille;
@@ -32,7 +40,6 @@ public class GeneRunnable implements Runnable {
     @Override
     public void run() {
 
-        lesVille = Fenetre.lesVilles;
         Selecteur selecteur = new Selecteur();
         EntreCroiseur croiseur = new EntreCroiseur();
         long time = System.currentTimeMillis();
@@ -46,6 +53,24 @@ public class GeneRunnable implements Runnable {
         Generation generation = generateur.getGeneration(nbIndividu, lesVille);
 
         population.ajouterGeneration(generation);
+       /*
+SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				Fenetre.setInfoArea("Population créée !");	
+				try {AG.frame.repaint();}catch(NullPointerException e){Fenetre.frame.repaint();}
+			}
+		});
+        */ 
+        setMeilleur(null);
+        lesVille = Fenetre.lesVilles;
+        /*
+         * SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				Fenetre.setInfoArea("Population créée !");	
+				try {AG.frame.repaint();}catch(NullPointerException e){Fenetre.frame.repaint();}
+			}
+		});
+         */
 
         do{
             Generation newGeneration = new Generation(generation.getNumeroGeneration()+1);
@@ -58,6 +83,7 @@ public class GeneRunnable implements Runnable {
                 Individu maman = selecteur.Selection(generation);
                 ArrayList<Individu> lesEnfants = new ArrayList<Individu>();
                 lesEnfants.addAll(croiseur.crossOver(papa, maman));
+
                 if((double) Math.round(Math.random()*100) <= nbPourcent){
                     for(int j = 0; j < nbMutation; j++){
                         Mutateur mutateur = new Mutateur(lesEnfants.get(0));
@@ -68,16 +94,32 @@ public class GeneRunnable implements Runnable {
                 }
                 newGeneration.ajouterGroupeIndividu(lesEnfants);
             }
+            evaluateur.evaluer(newGeneration);
+            if(meilleur == null){
+                setMeilleur(newGeneration.getMeilleurIndividu());
+
+               /*
+                *  SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						Fenetre.setInfoArea("Meilleur à la génération n° "+a+" au numéro "+meilleur.getNumindividu()+" : "+meilleur.getGeneIndividu()+", longueur : "+meilleur.getValeur());
+						try {frame.repaint();}catch(NullPointerException e){Fenetre.frame.repaint();}
+					}
+				});
+                */  
+            }
             generation = newGeneration;
+            population.ajouterGeneration(generation);
             a++;
-        }while(a < nbGeneration);
+        }
+        while(a < nbGeneration);
+        setMeilleur(generation.getMeilleurIndividu()); 
+
+        System.out.println(meilleur.getNumindividu());
 
         long dureeTotal = (System.currentTimeMillis() - time);
         final int min = (int) (dureeTotal /(60*1000F));
         final int sec = (int) ((dureeTotal %(60*1000F))/1000F);
-
-            evaluateur.evaluer(generation);
-            meilleur = generation.getMeilleurIndividu(); 
+        
     }
 
 }

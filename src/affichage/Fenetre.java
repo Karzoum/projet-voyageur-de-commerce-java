@@ -348,7 +348,7 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 				}
 
 			} else {
-				infoArea.append("Veuillez entrer des valeur....\n");
+				infoArea.append("Veuillez entrer des valeurs...\n");
 			}
 
 		} else if (src == stoper && running) {
@@ -371,7 +371,7 @@ public class Fenetre extends JFrame implements ActionListener, FocusListener, It
 
 	}
 
-	private void setInfoArea(final String text) {
+	static void setInfoArea(final String text) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				infoArea.append("\n" + text);
